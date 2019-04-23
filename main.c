@@ -30,7 +30,7 @@ int main() {
                     break;
                 case '8'://removehot();
                     break;
-                case (0): //sair das opcoes
+                case '0': //sair das opcoes
                     break;
                 default: printf("opção não valida, por favor introduza um valor entre 0 e 8\n");
                     break;

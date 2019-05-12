@@ -4,6 +4,7 @@ typedef struct {
 }User;
 
 /*Header - Funçoes*/
+User EditUser(User user);
 void FixInput(char *string);
 User Register();
 void UserInterface(User user);

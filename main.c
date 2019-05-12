@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "func.c"
+#include "func.h"
 
 int main() {
-    char choice ='', out=''; //assim inclui qualquer tecla que seja um erro pro default
+    char choice='1', out='1';
     User user;
     do{
-        printf("Por favor preencha as informações de user\n");
+        printf("Por favor preencha as informações de user");
         user =Register();
         do{
         printf("escolha uma opção:\n0-exit\n1-editar user\n2-escolher cidade\n3-remover cidade\n");

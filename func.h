@@ -11,20 +11,20 @@ typedef struct Cities{
 }CITIES;
 
 
-typedef struct City{
+typedef struct UserCity{
     char *name;
     struct City *next;
-}CITY;
+}USERCity;
 
 typedef struct {
     char *hot;
     PDI pdi;
-    CITY cities;
-}UserInfo;
+    USERCity cities;
+}USERInfo;
 
 typedef struct USER{
     char *name, *address, *date_of_birth, *phone_number;
-    UserInfo info;
+    USERInfo info;
     struct USER *next;
 }User;
 

@@ -114,6 +114,9 @@ User EditUser(User user){
     }while (!exit_edituser);
     return user;
 }
+User AddCity(user){
+
+}
 
 User Register() {
     User user;

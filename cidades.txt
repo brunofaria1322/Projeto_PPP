@@ -1,0 +1,17 @@
+[
+Viseu
+Sé Catedral de Viseu (Catedral do século XII com duas torres gémeas, fachada deslumbrante e teto abobado impressionante. horário: 9–12h|14–19h exceto 5ª)"
+Museu de Grão Vasco (Obras do icônico pintor renascentista. horário: 10–13h|14–18h)
+Parque do Fontel (O parque ocupa uma área de 10 hectares de exuberante vegetação e jardins de estilo italiano. horário: 24h)
+Cava de Viriato (É um fortaleza construída em terra batida, rodeada por um fosso. É monumento nacional desde 1910. horário: 3ª 14-18h,4ª-dom 10-13h|14-18h)
+Casa Museu Almeida Moreira (Casa histórica com obras de arte, do professor e crítico de arte Francisco Moreira. horário: 3ª 14-18h,4ª-dom 10-13h|14-17h)
+Museu do Quartzo (Está localizado no Monte de Santa Luzia. horário: 3ª-domingo 10-12h|14-17h)
+]
+[
+Lisboa
+Praça do Comércio (É uma das maiores praças da Europa onde se pode ver o imponente cavalo Gentil, da autoria de Machado de Castro. horário: 24h)
+Mosteiro dos Jerónimos (É um mosteiro português da Ordem de São Jerónimo construído no século XVI. horário: 10-17.30h)",
+Museu do Design e da Moda (Considerada uma das mais importantes colecções de design e de moda a nível internacional. horário: 3ª-dom 10-18h)
+Oceanário no Parque das Nações (Constitui-se em um aquário público e instituição de pesquisa sobre Biologia marinha e Oceanografia. horário: 10-19h)
+Cais do Sodré (Zona com melhores bares, discotecas e restaurantes em Lisboa e vista para o Tejo. horário: 24h)
+]

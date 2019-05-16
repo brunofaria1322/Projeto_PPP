@@ -2,8 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 #define MAX 200
-
-/*Structs
+//
+//Structs
+//
 typedef struct Pdi{
 	char *name, *info;
 	int pop;
@@ -18,14 +19,10 @@ typedef struct Cities{
 }CITIES;
 
 typedef struct Cities *ptr_Cities; //define um apontador para a primeira cidade
-*/
+
 int read_file();
-//ptr_Cities read_list();
-////
-int main() {
-	read_file();
-	return 0;
-}
+ptr_Cities read_list();
+
 
 int read_file(){
 	char l[MAX];
@@ -67,7 +64,7 @@ int read_file(){
 		scanf("%s",Pdi->name);
 		Pdi->next=NULL;
 		
-		//l=insert_list(l,node);
+		//addnode(); falta fazer
 	}
 	
 	return(l);

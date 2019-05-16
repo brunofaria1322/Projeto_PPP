@@ -71,3 +71,18 @@ int read_file(){
 	
 }
 */
+//
+// if (sort("viseu","coimbra")==-1) troca; 
+// if sort()==0 é erro significa que as strings sao iguais
+//
+int sort(char string[],char string2[],int i){
+	
+	if (string[i] == string2[i]) {
+		i++;
+		sort(string, string2, i);
+		}
+	if (string[i]>=string2[i] || (string2[i]==' '&& string[i]!=' ' ) )return -1;
+	//muda posicao
+	if (i==sizeof(string)|| i==sizeof(string2)) return 0;
+	return 1;
+}

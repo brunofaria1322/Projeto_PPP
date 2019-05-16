@@ -1,56 +1,84 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#define MAX 200
-//
-//Structs
-//
-typedef struct Pdi{
-	char *name, *info;
-	int pop;
-	struct Pdi *next;
-}PDI;
+#include "func.h"
 
-typedef struct Cities{
-	char *name;
-	int pop;
-	PDI pdi;
-	struct Cities *next;
-}CITIES;
-
-typedef struct Cities *ptr_Cities; //define um apontador para a primeira cidade
-
-int read_file();
-ptr_Cities read_list();
+//CITIES read_list();
 
 
 int read_file(){
 	char l[MAX];
 	FILE *f;
-	f= fopen( "C:\\Users\\anabe\\Desktop\\cidades.txt" ,"r");
-	char pdi[MAX], info[MAX];
-	do {
-		fgets (l, MAX, f);
-		printf("%s", l);
+	f= fopen("cidades.txt" ,"r");
+    if (f == NULL){
+        printf("Erro! Não Foi possivel abrir o ficheiro cidades.txt\n");
+        exit(-1);
+    }
+    int first=1;
+    CITIES *Cidades;
+    Cidades = (CITIES*) malloc(sizeof(CITIES));
+    head_Cities=Cidades;
+    do {
+		if (fgets (l, MAX, f)==NULL){
+		    break;}
+
 		if (strcmp(l,"[\n")==0){
-			fgets (l, MAX, f);
-			//mudar l por cidade.nome
-			printf("cidade:%s", l);
-			
-			do{
-				fgets (l, MAX, f);
-				if (strcmp(l,"]\n")==0) break;
-						//passa para a proxima cidade
-				// mudar l por pdi.nome
-				printf("pdi: %s",l);
-				fgets (l, MAX, f);
-				//mudar l por pdi.info
-				printf("info: %s",l);
-			}while(strcmp(l,"\n")!=0);
+		    fgets (l, MAX, f);
+		    FixInput(l);
+		    if (!first){
+                Cidades->next= (CITIES*)malloc(sizeof(CITIES));
+                Cidades=Cidades->next;
+		    }
+            char *city_name;
+            city_name= malloc(Max);
+		    strcpy(city_name,l);
+            Cidades->name=city_name;
+            printf("Cidade: %s\n", l);
+
+            PDI *pdi; //define um apontador para o primeiro pdi
+            PDI *ptr_Pdi;
+            ptr_Pdi=(PDI*)malloc(sizeof(PDI));
+
+            pdi=ptr_Pdi;
+            Cidades->pdi=pdi;
+            first=1;
+
+            do {
+                fgets(l, MAX, f);
+                FixInput(l);
+
+                if (strcmp(l, "]") == 0) {
+                //passa para a proxima cidade
+                first = 0;
+                break;
+                }
+
+                if (!first){
+                    ptr_Pdi->next= malloc(sizeof(PDI));
+                    ptr_Pdi=ptr_Pdi->next;
+                }
+
+                // pdi.nome
+                printf("pdi: %s\n",l);
+                char *pdi_name;
+                pdi_name= malloc(Max);
+                strcpy(pdi_name,l);
+                ptr_Pdi->name=pdi_name;
+
+                //pdi.info
+                fgets (l, MAX, f);
+                FixInput(l);
+
+
+                char *pdi_info;
+                pdi_info= malloc(MAX);
+                strcpy(pdi_info,l);
+                ptr_Pdi->info=pdi_info;
+                printf("info: %s\n",l);
+
+                first = 0;
+            }while(1);
 		}
 		
 		
-	}while(!strcmp(l,"\n"));
+	}while(1);
 	
 	fclose(f);
 }
@@ -71,18 +99,3 @@ int read_file(){
 	
 }
 */
-//
-// if (sort("viseu","coimbra")==-1) troca; 
-// if sort()==0 é erro significa que as strings sao iguais
-//
-int sort(char string[],char string2[],int i){
-	
-	if (string[i] == string2[i]) {
-		i++;
-		sort(string, string2, i);
-		}
-	if (string[i]>=string2[i] || (string2[i]==' '&& string[i]!=' ' ) )return -1;
-	//muda posicao
-	if (i==sizeof(string)|| i==sizeof(string2)) return 0;
-	return 1;
-}

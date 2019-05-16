@@ -1,36 +1,45 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "func.h"
-#define Max 64
 
 int main() {
+    setlocale(LC_ALL, "Portuguese");
+
+    read_file();
+
+    CITIES *cid;
+    cid = head_Cities;
+
+    /*
+    char *s;
+    s=cid->next->pdi->next->next->info;
+    printf("\n%s\n",s);
+    */
+
     int exit=0;
-    char choice = 'i';
-    do{
-        User user;
-        printf("\nEscolha uma opcao:\n0-Sair\n1-Novo user\n2-User existente\nOpcao: ");
-        scanf("%c",&choice);
-        getchar();
-        switch (choice){
-            case '1': //Registar novo user
-                user = Register();
-                UserInterface(user);
-                break;
-            case '2'://User já existente
-                //procurar e ir buscar o (user)
-                // depois UserInterface(user);
-                break;
-            case '0': //sair das opcoes
-                exit=1;
-                break;
+     char choice = 'i';
+     do{
+         User user;
+         printf("\nEscolha uma opção:\n0-Sair\n1-Novo user\n2-User existente\nOpção: ");
+         scanf("%c",&choice);
+         getchar();
+         switch (choice){
+             case '1': //Registar novo user
+                 user = Register();
+                 UserInterface(user);
+                 break;
+             case '2'://User já existente
+                 //procurar e ir buscar o (user)
+                 // depois UserInterface(user);
+                 break;
+             case '0': //sair das opcoes
+                 exit=1;
+                 break;
 
-            default: printf("Opcao invalida. Por favor introduza um valor entre 0 e 2.\n");
-                break;
-        }
+             default: printf("Opção inválida. Por favor introduza um valor entre 0 e 2.\n");
+                 break;
+         }
 
-    }while (!exit);
-    return 0;
+     }while (!exit);
+     return 0;
 }
 
 //Remove o /n do input no fgets
@@ -42,12 +51,12 @@ void UserInterface(User user){
     int exit_user=0;
     char choice= 'i';
     do{
-        printf("\nEscolha uma opcao:\n0-Sair/Mudar de User\n1-Editar user\n2-Escolher cidade\n3-Remover cidade\n4-Escolher pdi\n5-Remover pdi\n6-Mais Informacao\n7-Escolher hot\n8-Remover hot\nOpcao: ");
+        printf("\nEscolha uma opção:\n0-Sair/Mudar de User\n1-Editar user\n2-Escolher cidade\n3-Remover cidade\n4-Escolher pdi\n5-Remover pdi\n6-Mais Informação\n7-Escolher hot\n8-Remover hot\nOpção: ");
         scanf("%c",&choice);
         getchar();
         switch (choice){
             case '1': //editar o que esta guardado
-            user=EditUser(user);
+                user=EditUser(user);
                 break;
             case '2'://addcity();
                 break;
@@ -66,7 +75,7 @@ void UserInterface(User user){
             case '0': //sair das opcoes
                 exit_user=1;
                 break;
-            default: printf("Opcao invalida. Por favor introduza um valor entre 0 e 8.\n");
+            default: printf("Opção inválida. Por favor introduza um valor entre 0 e 8.\n");
                 break;
 
         }
@@ -80,7 +89,7 @@ User EditUser(User user){
     int exit_edituser=0;
     char choice= 'i';
     do{
-        printf("\nEscolha uma opcao:\n0-Sair da edicao de User\n1-Alterar Nome\n2-Alterar Morada\n3-Alterar Data de Nascimento\n4-Alterar Numero de Telefone\nOpcao: ");
+        printf("\nEscolha uma opção:\n0-Sair da edição de User\n1-Alterar Nome\n2-Alterar Morada\n3-Alterar Data de Nascimento\n4-Alterar Número de Telefone\nOpção: ");
         scanf("%c",&choice);
         getchar();
         switch (choice){
@@ -107,7 +116,7 @@ User EditUser(User user){
             case '0': //sair das opcoes
                 exit_edituser=1;
                 break;
-            default: printf("Opcao invalida. Por favor introduza um valor entre 0 e 4.\n");
+            default: printf("Opção inválida. Por favor introduza um valor entre 0 e 4.\n");
                 break;
 
         }

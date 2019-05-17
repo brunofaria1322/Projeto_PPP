@@ -44,7 +44,7 @@ User EditUser(User user);
 void FixInput(char *string);
 User Register();
 void UserInterface(User user);
-int read_file();
+void read_file();
 
 /*Variaveis*/
 CITIES *head_Cities; //define um apontador para a primeira cidade

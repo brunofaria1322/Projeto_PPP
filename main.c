@@ -8,11 +8,9 @@ int main() {
     CITIES *cid;
     cid = head_Cities;
 
-    /*
     char *s;
     s=cid->next->pdi->next->next->info;
     printf("\n%s\n",s);
-    */
 
     int exit=0;
      char choice = 'i';
@@ -39,7 +37,8 @@ int main() {
          }
 
      }while (!exit);
-     return 0;
+
+    return 0;
 }
 
 //Remove o /n do input no fgets
@@ -123,27 +122,30 @@ User EditUser(User user){
     }while (!exit_edituser);
     return user;
 }
+
+/*
 User AddCity(user){
 
 }
+*/
 
 User Register() {
-    User user;
-    user.name= (char*) malloc(Max);
-    user.address= (char* )malloc(Max);
-    user.date_of_birth= (char*) malloc(Max);
-    user.phone_number= (char*) malloc(Max);
-    printf("Nome: ");
-    fgets(user.name,Max,stdin);
-    FixInput(user.name);
-    printf("Morada: ");
-    fgets(user.address,Max,stdin);
-    FixInput(user.address);
-    printf("Data de Nascimento (DD-MM-AAAA): ");
-    fgets(user.date_of_birth,Max,stdin);
-    FixInput(user.date_of_birth);
-    printf("Telefone: ");
-    fgets(user.phone_number,Max,stdin);
-    FixInput(user.phone_number);
-    return user;
+User user;
+user.name= (char*) malloc(Max);
+user.address= (char* )malloc(Max);
+user.date_of_birth= (char*) malloc(Max);
+user.phone_number= (char*) malloc(Max);
+printf("Nome: ");
+fgets(user.name,Max,stdin);
+FixInput(user.name);
+printf("Morada: ");
+fgets(user.address,Max,stdin);
+FixInput(user.address);
+printf("Data de Nascimento (DD-MM-AAAA): ");
+fgets(user.date_of_birth,Max,stdin);
+FixInput(user.date_of_birth);
+printf("Telefone: ");
+fgets(user.phone_number,Max,stdin);
+FixInput(user.phone_number);
+return user;
 }

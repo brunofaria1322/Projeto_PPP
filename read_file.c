@@ -3,7 +3,8 @@
 //CITIES read_list();
 
 
-int read_file(){
+void read_file(){
+    setlocale(LC_ALL, "Portuguese");
 	char l[MAX];
 	FILE *f;
 	f= fopen("cidades.txt" ,"r");
@@ -15,6 +16,7 @@ int read_file(){
     CITIES *Cidades;
     Cidades = (CITIES*) malloc(sizeof(CITIES));
     head_Cities=Cidades;
+
     do {
 		if (fgets (l, MAX, f)==NULL){
 		    break;}
@@ -26,10 +28,12 @@ int read_file(){
                 Cidades->next= (CITIES*)malloc(sizeof(CITIES));
                 Cidades=Cidades->next;
 		    }
+
             char *city_name;
             city_name= malloc(Max);
 		    strcpy(city_name,l);
             Cidades->name=city_name;
+
             printf("Cidade: %s\n", l);
 
             PDI *pdi; //define um apontador para o primeiro pdi
@@ -76,8 +80,7 @@ int read_file(){
                 first = 0;
             }while(1);
 		}
-		
-		
+
 	}while(1);
 	
 	fclose(f);

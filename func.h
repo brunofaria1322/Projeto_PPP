@@ -26,10 +26,16 @@ typedef struct UserCity{
     struct UserCity *next;
 }USERCity;
 
+typedef struct UserPdi{
+    char *name;
+    struct UserPdi *next;
+}USERPdi;
+
+
 typedef struct {
     char *hot;
-    PDI *pdi;
-    USERCity cities;
+    USERPdi *pdi;
+    USERCity *cities;
 }USERInfo;
 
 typedef struct USER{
@@ -46,5 +52,11 @@ User Register();
 void UserInterface(User user);
 void read_file();
 
+void GetCities( char **citties);
+User AddCity(User user);
+
+
 /*Variaveis*/
 CITIES *head_Cities; //define um apontador para a primeira cidade
+int num_cities, num_max_pdi;
+char **cities;

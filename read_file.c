@@ -1,8 +1,5 @@
 #include "func.h"
 
-//CITIES read_list();
-
-
 void read_file(){
     setlocale(LC_ALL, "Portuguese");
 	char l[MAX];
@@ -17,9 +14,10 @@ void read_file(){
     Cidades = (CITIES*) malloc(sizeof(CITIES));
     head_Cities=Cidades;
 
-    do {
-		if (fgets (l, MAX, f)==NULL){
-		    break;}
+    num_max_pdi=0;
+    num_cities=0;
+    num_pdi=0;
+    while(fgets (l, MAX, f)!=NULL){
 
 		if (strcmp(l,"[\n")==0){
 		    fgets (l, MAX, f);
@@ -29,12 +27,12 @@ void read_file(){
                 Cidades=Cidades->next;
 		    }
 
-            char *city_name;
-            city_name= malloc(Max);
-		    strcpy(city_name,l);
-            Cidades->name=city_name;
+            Cidades->name=malloc(Max);
+		    strcpy(Cidades->name,l);
 
-            printf("Cidade: %s\n", l);
+            //Contador num Cidades
+            num_cities++;
+            //printf("Cidade: %s\n", l);
 
             PDI *pdi; //define um apontador para o primeiro pdi
             PDI *ptr_Pdi;
@@ -44,6 +42,7 @@ void read_file(){
             Cidades->pdi=pdi;
             first=1;
 
+            int count_pdi=0;
             do {
                 fgets(l, MAX, f);
                 FixInput(l);
@@ -59,46 +58,32 @@ void read_file(){
                     ptr_Pdi=ptr_Pdi->next;
                 }
 
+                count_pdi++;
+                num_pdi++;
                 // pdi.nome
-                printf("pdi: %s\n",l);
-                char *pdi_name;
-                pdi_name= malloc(Max);
-                strcpy(pdi_name,l);
-                ptr_Pdi->name=pdi_name;
+                //printf("pdi: %s\n",l);
+
+                ptr_Pdi->name=malloc(Max);
+                strcpy(ptr_Pdi->name,l);
 
                 //pdi.info
                 fgets (l, MAX, f);
                 FixInput(l);
 
-
-                char *pdi_info;
-                pdi_info= malloc(MAX);
-                strcpy(pdi_info,l);
-                ptr_Pdi->info=pdi_info;
-                printf("info: %s\n",l);
+                ptr_Pdi->info=malloc(MAX);
+                strcpy(ptr_Pdi->info,l);
+                //printf("info: %s\n",l);
 
                 first = 0;
             }while(1);
+            ptr_Pdi->next=NULL;
+
+            if (count_pdi>num_max_pdi){
+                num_max_pdi=count_pdi;
+            }
 		}
 
-	}while(1);
-	
+	}
+    Cidades->next=NULL;
 	fclose(f);
 }
-
-/*ptr_cities read_list() {
-	ptr_Cities K=NULL,Pdi;
-	Pdi=malloc(sizeof(PDI));
-	if (Pdi==NULL)
-		exit(-1);
-		
-		scanf("%s",Pdi->name);
-		Pdi->next=NULL;
-		
-		//addnode(); falta fazer
-	}
-	
-	return(l);
-	
-}
-*/

@@ -46,17 +46,33 @@ typedef struct USER{
 
 
 /*Header - Funçoes*/
-User EditUser(User user);
+int Len(char** array,int limit);
+void AddUserCP(char *word, char **list,int limit);
 void FixInput(char *string);
-User Register();
-void UserInterface(User user);
 void read_file();
 
-void GetCities( char **citties);
-User AddCity(User user);
+User Register();
+User EditUser(User user);
+void UserInterface(User user, int num[], char **user_cities,char **user_pdi);    //num[0]=num cidades do user, num[1]==num pdi do user
+
+//AddCity
+User AddCity(User user,int num[],char** user_cities);
+void GetCities(char **cities, char **user_cities);
+
+//RemoveCity
+User RemoveCity(User user,int num[],char **user_cities);
+void GetUserCities(User user, char **user_cities);
+
+//AddPdi
+User AddPdi(User user,int num[],char** user_pdi);
+void GetPdiByCity( char **user_pdi,char **cities);
+void GetPdi(char **pdi,char *city,char **user_pdi);
+
+//RemovePdi
+User RemovePdi(User user,int num[],char **user_pdi);
+void GetUserPdi(User user, char **user_pdi);
 
 
 /*Variaveis*/
 CITIES *head_Cities; //define um apontador para a primeira cidade
-int num_cities, num_max_pdi;
-char **cities;
+int num_cities, num_max_pdi,num_pdi;

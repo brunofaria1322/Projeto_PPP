@@ -10,11 +10,11 @@ int main() {
     char **user_cities, **user_pdi;
 
     do{
-        user_cities= (char**) malloc(num_cities* sizeof(char*));
+        user_cities= (char**) malloc(MaxCity* sizeof(char*));
         user_pdi= (char**) malloc(num_pdi* sizeof(char*));
 
-        int i=0,num[2]={0,0};;
-        for (i=0;i<num_cities;i++){
+        int i=0,num[3]={0,0,0};//CIDADES,PDI,HOT
+        for (i=0;i<MaxCity;i++){
             user_cities[i]= (char*) calloc(1,Max);
         }
 
@@ -31,7 +31,7 @@ int main() {
                  UserInterface(user,num,user_cities,user_pdi);
                  break;
              case '2'://User já existente
-                 //procurar e ir buscar o (user) e o numero de pdi e cidades (num)
+                 //procurar e ir buscar o (user) e o numero de cidades, pdi e hot (num)
                  //void GetUserCities(User user,char **user_cities){
                  // depois UserInterface(user,num);
                  break;
@@ -82,8 +82,13 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                 }
 
             case '2'://addcity();
-                user=AddCity(user, num,user_cities);
-                break;
+                if (num[0]<MaxCity) {
+                    user = AddCity(user, num, user_cities);
+                }
+                else{
+                    printf("Apenas pode ter um máximo de 3 Locais");
+                }
+                    break;
 
             case '5'://removepdi();
                 if (num[1]==0){
@@ -106,10 +111,27 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
             case '6'://moreinfo();
                 break;
 
-            case '7'://addhot();
-                break;
 
             case '8'://removehot();
+                if (num[2]==0){
+                    printf("Ainda não escolheu nenhuma hot\nDeseja adicionar um hot?\n1-Sim\n2-Não\nOpção: ");
+                    scanf("%c",&choice);
+                    getchar();
+                    if (choice!='1'){
+                        break;
+                    }
+                }
+                else{
+                    user=RemoveHot(user,num);
+                    break;
+                }
+            case '7'://addhot();
+                if (num[2]==0) {
+                    user=AddHot(user,num);
+                }
+                else{
+                    printf("Apenas pode ter um Hot");
+                }
                 break;
 
             case '0': //sair das opcoes
@@ -209,7 +231,7 @@ User AddCity(User user,int num[],char** user_cities) {
                 cidades->name=malloc(Max);
                 strcpy(cidades->name,cities[choice]);
 
-                AddUserCP(cities[choice],user_cities,num_cities);
+                AddUserCP(cities[choice],user_cities,MaxCity);
                 num[0]+=1;
 
                 for (i = choice ;i < len-1; i++) {
@@ -410,7 +432,6 @@ User AddPdi(User user,int num[],char** user_pdi) {
             }
         }
     }while (!exit);
-    //printf("\n---\n%s\n%s\n---\n",user_cities[0],user_cities[1]);
     return user;
 }
 
@@ -582,7 +603,76 @@ void GetUserPdi(User user,char **user_pdi){
     }
 }
 
-//cima
+//AddHot
+User AddHot(User user, int num[]){
+    char **pdi, **cities;
+    cities = (char**) malloc(num_cities* sizeof(char*));
+    pdi = (char**) malloc(num_pdi* sizeof(char*));
+    int exit=0, len,exit_pdi;
+    char choice= 'i';
+
+    char **empty;
+    empty=(char**)malloc(sizeof(char*));
+    *empty= (char*) calloc(1,2);
+
+    do{
+        GetPdiByCity(empty,cities);
+        printf("\n0-Voltar\nEscolha a cidade à qual pertence o pdi desejado:\n");
+        len=Len(cities,num_cities);
+        printf("Opção: ");
+        scanf("%c",&choice);
+        getchar();
+        if (choice=='0') {
+            exit = 1;
+        }
+        else{
+            choice=(int) choice-'0';
+            if (choice>0 && choice<=len) {
+                choice -= 1;
+                char *cidade;
+                cidade=cities[choice];
+                exit_pdi = 0;
+                do {
+                    GetPdi(pdi, cidade,empty);
+                    len=Len(pdi,num_max_pdi);
+                    printf("Opção: ");
+                    scanf("%c", &choice);
+                    getchar();
+
+                    if (choice == '0') {
+                        exit_pdi = 1;
+                    }
+                    else {
+                        choice = (int) choice - '0';
+                        if (choice > 0 && choice <= len) {
+                            choice -= 1;
+
+                            user.info.hot = (char *) malloc(MAX);
+
+                            strcpy(user.info.hot, pdi[choice]);
+
+                            num[2] = 1;
+                            printf("Hot guardado com sucesso");
+                            exit_pdi=1;
+                            exit=1;
+                        }
+                    }
+                }while (!exit_pdi);
+            }
+        }
+    }while (!exit);
+    return user;
+}
+//RemoveHot
+User RemoveHot(User user, int num[]){
+    free(user.info.hot);
+    num[2]=0;
+    printf("Hot Removido com sucesso\n");
+    return user;
+}
+
+
+
 User Register() {
     User user;
     user.info.cities= NULL;

@@ -46,14 +46,12 @@ void read_file(){
             int count_pdi=0;
             do {
                 fgets(l, MAX, f);
-                FixInput(l);
 
-                if (strcmp(l, "]") == 0) {
-                //passa para a proxima cidade
-                first = 0;
-                break;
+                if (l[0]==']'){
+                    //passa para a proxima cidade
+                    first = 0;
+                    break;
                 }
-
                 if (!first){
                     ptr_Pdi->next= malloc(sizeof(PDI));
                     ptr_Pdi=ptr_Pdi->next;
@@ -67,6 +65,7 @@ void read_file(){
                 ptr_Pdi->name=malloc(Max);
                 ptr_Pdi->pop=0;
                 ptr_Pdi->hot=0;
+                FixInput(l);
                 strcpy(ptr_Pdi->name,l);
 
                 //pdi.info

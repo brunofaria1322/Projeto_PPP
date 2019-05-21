@@ -169,7 +169,7 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                 }
                 break;
 
-            case '9': //sair das opcoes
+            case '9': //Caminho
                 if (num[0]!=3){
                     printf("Ainda não Escolheu 3 cidades!");
                 }
@@ -892,7 +892,6 @@ void GetPopularity(){
             AddPopularityToCity(cidades->name);
             cidades=cidades->next;
         }
-        user=user->next;
 
         pontos=user->info.pdi;
         while (pontos!=NULL){
@@ -902,6 +901,7 @@ void GetPopularity(){
         if (user->info.hot!=NULL){
             AddHotToPDI(user->info.hot_city,user->info.hot);
         }
+        user=user->next;
     }
 }
 

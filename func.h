@@ -10,7 +10,7 @@
 /*Structs*/
 typedef struct Pdi{
     char *name, *info;
-    int pop;
+    int pop,hot;
     struct Pdi *next;
 }PDI;
 
@@ -28,13 +28,13 @@ typedef struct UserCity{
 }USERCity;
 
 typedef struct UserPdi{
-    char *name;
+    char *name, *city;
     struct UserPdi *next;
 }USERPdi;
 
 
 typedef struct {
-    char *hot;
+    char *hot, *hot_city;
     USERPdi *pdi;
     USERCity *cities;
 }USERInfo;
@@ -50,12 +50,20 @@ typedef struct USER{
 int Len(char** array,int limit);
 void AddUserCP(char *word, char **list,int limit);
 void FixInput(char *string);
-void read_file();
 
+void read_file();
+void read_users();
+void WriteUserFile();
+
+//User func
+User FindUser(char* tlm);
 User Register();
 User EditUser(User user);
 void UserInterface(User user, int num[], char **user_cities,char **user_pdi);    //num[0]=num cidades do user, num[1]==num pdi do user
 void PrintUserInfo(User user);
+void SaveUser(User user);
+void AddUserToList(User user,User *list);
+User GetUserFromPointer(User *pointer);
 
 //AddCity
 User AddCity(User user,int num[],char** user_cities);
@@ -82,4 +90,6 @@ User RemoveHot(User user, int num[]);
 
 /*Variaveis*/
 CITIES *head_Cities; //define um apontador para a primeira cidade
-int num_cities, num_max_pdi,num_pdi;
+User *head_User; //define um apontador para o primeiro User
+int num_cities, num_max_pdi,num_pdi,num_users;
+

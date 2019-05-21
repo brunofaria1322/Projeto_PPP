@@ -4,13 +4,11 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
 
     read_file();
+    read_users();
 
     int exit=0;
     char choice = 'i';
     char **user_cities, **user_pdi;
-    User *head_user;
-    //ReadUserFisle
-
 
     do{
         user_cities= (char**) malloc(MaxCity* sizeof(char*));
@@ -24,23 +22,53 @@ int main() {
         for (i=0;i<num_pdi;i++){
             user_pdi[i]= (char*) calloc(1,Max);
         }
+        char *tlm;
+        tlm=malloc(Max);
         User user;
-            printf("Escolha uma opção:\n0-Sair\n1-Novo user\n2-User existente\nOpção: ");
+        printf("Escolha uma opção:\n0-Sair\n1-Novo user\n2-User existente\nOpção: ");
         scanf("%c",&choice);
         getchar();
         switch (choice){
-             case '1': //Registar novo user
-                 user = Register();
-                 UserInterface(user,num,user_cities,user_pdi);
-                 break;
-             case '2'://User já existente
-                 //procurar e ir buscar o (user) e o numero de cidades, pdi e hot (num)
-                 //void GetUserCities(User user,char **user_cities){
-                 // depois UserInterface(user,num);
-                 break;
-             case '0': //sair das opcoes
-                 exit=1;
-                 break;
+            case '2'://User já existente
+                printf("Insira o seu numero de telemovel: ");
+                fgets(tlm,Max,stdin);
+                FixInput(tlm);
+
+                //procura user
+                user = FindUser(tlm);
+
+                //Se não existir;
+                if (user.name==NULL){
+                    printf("Não foi encontrado nenhum user associado a esse Número\n");
+                    printf("Deseja Registar-se?\n1-Sim\n2-Não\nOpção: ");
+                    scanf("%c",&choice);
+                    getchar();
+                    if (choice!='1'){
+                        break;
+                    }
+                }
+                else{
+                    //procurar e ir buscar o (user) e o numero de cidades, pdi e hot (num)
+                    GetUserCities(user,user_cities);
+                    num[0]=Len(user_cities,MaxCity);
+                    GetUserPdi(user,user_pdi);
+                    num[1]=Len(user_pdi,num_pdi);
+                    if (user.info.hot!=NULL){
+                        num[2]=1;
+                    }
+                    printf("%d\t%d\t%d\n",num[0],num[1],num[2]);
+                    UserInterface(user,num,user_cities,user_pdi);
+                    break;
+                }
+
+            case '1': //Registar novo user
+                user = Register();
+                UserInterface(user,num,user_cities,user_pdi);
+                break;
+
+            case '0': //sair das opcoes
+                exit=1;
+                break;
 
              default: printf("Opção inválida. Por favor introduza um valor entre 0 e 2.\n");
                  break;
@@ -49,6 +77,9 @@ int main() {
         free(user_cities);
     }while (!exit);
 
+    WriteUserFile();
+    //free(head_user);
+    free(head_Cities);
     return 0;
 }
 
@@ -147,9 +178,48 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
 
         }
     }while (!exit_user);
-    //Salvar User
+    SaveUser(user);
 }
 
+User FindUser(char* tlm){
+    User user1;
+    if (head_User==NULL){
+        user1.name=NULL;
+        return user1;
+    }
+
+    User *last_user;
+    User *user;
+    user=head_User;
+
+    //Se for o primeiro;
+    if(strcmp(user->phone_number,tlm)==0){
+        free(head_User);
+        head_User=user->next;
+        user1=GetUserFromPointer(user);
+    }
+    //Se não for o primeiro;
+    else{
+        last_user=user;
+        user=user->next;
+        head_User=last_user;
+
+        while (strcmp(user->phone_number,tlm)!=0){
+            if (user->next==NULL){
+                user1.name=NULL;
+                return user1;
+            }
+            user=user->next;
+            last_user=last_user->next;
+        }
+
+        user1=GetUserFromPointer(user);
+        last_user->next=user->next;
+        free(user);
+    }
+
+    return user1;
+}
 
 User EditUser(User user){
     int exit_edituser=0;
@@ -215,6 +285,10 @@ void PrintUserInfo(User user) {
     if(user.info.hot!=NULL){
         printf("Hot: %s\n",user.info.hot);
     }
+    char lixo;
+    printf("Prima 0 ou outro caracter para Sair\nOpção: ");
+    scanf("%c",&lixo);
+    getchar();
 }
 
 
@@ -401,7 +475,7 @@ User AddPdi(User user,int num[],char** user_pdi) {
     char choice= 'i';
     USERPdi *pontos;
 
-    //
+    //Cidade
     do{
         GetPdiByCity(user_pdi,cities);
         printf("\n0-Voltar\nEscolha a cidade à qual pertence o pdi desejado:\n");
@@ -419,6 +493,8 @@ User AddPdi(User user,int num[],char** user_pdi) {
                 char *cidade;
                 cidade=cities[choice];
                 exit_pdi = 0;
+
+                //PDI
                 do {
                     GetPdi(pdi, cidade,user_pdi);
                     len=Len(pdi,num_max_pdi);
@@ -446,9 +522,13 @@ User AddPdi(User user,int num[],char** user_pdi) {
                                 pontos = pontos->next;
                             }
 
+                            //Escrever na lista
                             pontos->next = NULL;
                             pontos->name = malloc(Max);
                             strcpy(pontos->name, pdi[choice]);
+
+                            pontos->city = malloc(Max);
+                            strcpy(pontos->city, cidade);
 
                             AddUserCP(pdi[choice], user_pdi,num_pdi);
                             num[1] += 1;
@@ -466,6 +546,7 @@ User AddPdi(User user,int num[],char** user_pdi) {
     return user;
 }
 
+//Printa pdis que nao tenham sido escolhidos pelo user e printa organizando por cidade
 void GetPdiByCity(char **user_pdi,char **cities){
     CITIES *cid;
     cid = head_Cities;
@@ -516,6 +597,7 @@ void GetPdiByCity(char **user_pdi,char **cities){
     }
 }
 
+//Busca os pdis qua nao tenham cido escolhidos pelo user de uma certa cidade
 void GetPdi(char **pdi,char *city, char **user_pdi){
     CITIES *cid;
     cid = head_Cities;
@@ -552,7 +634,6 @@ void GetPdi(char **pdi,char *city, char **user_pdi){
     }
 }
 
-//baixo
 //Remove Pdi
 User RemovePdi(User user,int num[],char **user_pdi) {
 
@@ -620,6 +701,7 @@ User RemovePdi(User user,int num[],char **user_pdi) {
     return user;
 }
 
+//Busca pdi do user i guarda em array de strings (user_pdi)
 void GetUserPdi(User user,char **user_pdi){
     USERPdi *user_ponto;
     user_ponto=user.info.pdi;
@@ -679,8 +761,11 @@ User AddHot(User user, int num[]){
                             choice -= 1;
 
                             user.info.hot = (char *) malloc(MAX);
-
                             strcpy(user.info.hot, pdi[choice]);
+
+                            user.info.hot_city = (char *) malloc(MAX);
+                            strcpy(user.info.hot_city, cidade);
+
 
                             num[2] = 1;
                             printf("Hot guardado com sucesso");
@@ -706,6 +791,7 @@ User RemoveHot(User user, int num[]){
 
 User Register() {
     User user;
+    user.next=NULL;
     user.info.cities= NULL;
     user.info.pdi= NULL;
     user.info.hot= NULL;
@@ -728,6 +814,21 @@ User Register() {
     return user;
 }
 
+void SaveUser(User user){
+    if (head_User==NULL){
+        head_User=(User*) malloc(sizeof(User));
+        AddUserToList(user,head_User);
+    }
+    else{
+        User *users;
+        users=head_User;
+        while (users->next!=NULL){
+            users=users->next;
+        }
+        users->next=(User*) malloc(sizeof(User));
+        AddUserToList(user,users->next);
+    }
+}
 
 int Len(char** array,int limit){
     int i,len=limit;
@@ -748,4 +849,24 @@ void AddUserCP(char *word, char **list,int limit){
             break;
         }
     }
+}
+
+void AddUserToList(User user,User *list){
+    list->name=user.name;
+    list->address=user.address;
+    list->next=user.next;
+    list->date_of_birth=user.date_of_birth;
+    list->phone_number=user.phone_number;
+    list->info=user.info;
+}
+
+User GetUserFromPointer(User *pointer){
+    User user;
+    user.next=NULL;
+    user.name=pointer->name;
+    user.address=pointer->address;
+    user.date_of_birth=pointer->date_of_birth;
+    user.phone_number=pointer->phone_number;
+    user.info=pointer->info;
+    return user;
 }

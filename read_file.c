@@ -12,7 +12,7 @@ void read_file(){
     int first=1;
     CITIES *Cidades;
     Cidades = (CITIES*) malloc(sizeof(CITIES));
-    head_Cities=Cidades;
+    head_Cities=Cidades; // pointer para o primeiro
 
     num_max_pdi=0;
     num_cities=0;
@@ -86,4 +86,177 @@ void read_file(){
 	}
     Cidades->next=NULL;
 	fclose(f);
+}
+
+
+void read_users() {
+    int i,primeiro=1;
+    setlocale(LC_ALL, "Portuguese");
+    char l[MAX];
+    FILE *f;
+    f = fopen("users.txt", "r");
+    if (f == NULL) {
+        printf("Erro! Não Foi possivel abrir o ficheiro users.txt\n");
+        exit(-1);
+    }
+
+    User *user;
+    user = (User *) malloc(sizeof(User));
+    head_User = user; // pointer para o primeiro
+
+    num_users=0;
+    while (fgets(l, Max, f) != NULL) {
+        if(!primeiro){
+            user->next = (User *) malloc(sizeof(User));
+            user = user->next;
+        }
+        else{
+            primeiro=0;
+        }
+
+        user->name=(char*)malloc(Max);
+        user->address=(char*)malloc(Max);
+        user->date_of_birth=(char*)malloc(Max);
+        user->phone_number=(char*)malloc(Max);
+
+        FixInput(l);
+        strcpy(user->name, l);
+        printf("name: %s\n",user->name);
+
+        fgets(l, Max, f);
+        FixInput(l);
+        strcpy(user->address, l);
+        printf("address: %s\n",user->address);
+
+        fgets(l, Max, f);
+        FixInput(l);
+        strcpy(user->date_of_birth, l);
+        printf("data: %s\n",user->date_of_birth);
+
+        fgets(l, Max, f);
+        FixInput(l);
+        strcpy(user->phone_number, l);
+        printf("telemovel: %s\n",user->phone_number);
+
+        //cidades
+        int first=1;
+        USERCity *cidades;
+        user->info.cities=(USERCity*) malloc(sizeof(USERCity));
+        cidades=user->info.cities;
+
+        for (i = 0; i < 3; i++) {
+            fgets(l, Max, f);
+            if (l[0] == '[') {
+                if (first){
+                    user->info.cities=NULL;
+                }
+                else{
+                    cidades->next=NULL;
+                }
+                break;
+            }
+            if (first){
+                cidades->name=(char*)malloc(Max);
+                FixInput(l);
+                strcpy(cidades->name, l);
+                printf("user cidade: %s\n", cidades->name);
+                first=0;
+            }
+            else{
+                cidades->next = (USERCity *) malloc(sizeof(USERCity));
+                cidades = cidades->next;
+
+                cidades->name=(char*)malloc(Max);
+                FixInput(l);
+                strcpy(cidades->name, l);
+
+                printf("user cidade: %s\n", cidades->name);
+
+            }
+        }
+
+        //Hot
+        if (l[0] != '[') {
+            fgets(l, Max, f);
+        }
+        if(l[1]== '\n'){
+            user->info.hot=NULL;
+        } else{
+            for (i=0;i<strlen(l);i++){
+                if (l[i+1]=='\n'){
+                    l[i]='\0';
+                    break;
+                }
+                l[i]=l[i+1];
+            }
+            user->info.hot=(char*)malloc(Max);
+            strcpy(user->info.hot, l);
+            printf("Hot: %s\n",user->info.hot);
+
+            fgets(l, Max, f);
+            FixInput(l);
+            user->info.hot_city=(char*)malloc(Max);
+            strcpy(user->info.hot_city, l);
+            printf("Hot cidade: %s\n",user->info.hot_city);
+        }
+
+        //Pdi
+        USERPdi *pontos;
+        user->info.pdi=(USERPdi*) malloc(sizeof(USERPdi));
+        pontos=user->info.pdi;
+        first=1;
+
+        do {
+            fgets(l, Max, f);
+            if (l[0]==']') {
+                if (first){
+                    user->info.pdi=NULL;
+                }
+                else{
+                    pontos->next=NULL;
+                }
+                break;
+            }
+            if (first){
+                pontos->name=(char*)malloc(Max);
+                FixInput(l);
+                strcpy(pontos->name, l);
+                printf("pdi user: %s\n", pontos->name);
+
+                pontos->city=(char*)malloc(Max);
+                fgets(l, Max, f);
+                FixInput(l);
+                strcpy(pontos->city, l);
+                printf("pdi city user: %s\n", pontos->city);
+
+                first=0;
+            }
+            else{
+                pontos->next=(USERPdi*)malloc(sizeof(USERPdi));
+                pontos=pontos->next;
+
+                //Nome
+                pontos->name=(char*)malloc(Max);
+                FixInput(l);
+                strcpy(pontos->name, l);
+                printf("pdi user: %s\n", pontos->name);
+
+                //Cidade pertecente
+                pontos->city=(char*)malloc(Max);
+                fgets(l, Max, f);
+                FixInput(l);
+                strcpy(pontos->city, l);
+                printf("pdi city user: %s\n", pontos->city);
+            }
+        } while (1);
+
+        num_users++;
+    }
+    if (num_users){
+        user->next=NULL;
+    }
+    else{
+        head_User=NULL;
+    }
+    fclose(f);
 }

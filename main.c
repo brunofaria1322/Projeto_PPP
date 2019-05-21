@@ -8,6 +8,9 @@ int main() {
     int exit=0;
     char choice = 'i';
     char **user_cities, **user_pdi;
+    User *head_user;
+    //ReadUserFisle
+
 
     do{
         user_cities= (char**) malloc(MaxCity* sizeof(char*));
@@ -59,7 +62,7 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
     char choice= 'i';
 
     do{
-        printf("\nEscolha uma opção:\n0-Sair/Mudar de User\n1-Editar user\n2-Escolher cidade\n3-Remover cidade\n4-Escolher pdi\n5-Remover pdi\n6-Mais Informação\n7-Escolher hot\n8-Remover hot\nOpção: ");
+        printf("\nEscolha uma opção:\n0-Sair/Mudar de User\n1-Editar user\n2-Informação do User\n3-Escolher cidade\n4-Remover cidade\n5-Escolher pdi\n6-Remover pdi\n7-Escolher hot\n8-Remover hot\nOpção: ");
         scanf("%c",&choice);
         getchar();
         switch (choice){
@@ -67,7 +70,12 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                 user=EditUser(user);
                 break;
 
-            case '3'://removecity();
+            case '2'://Userinfo;
+                PrintUserInfo(user);
+                break;
+
+
+            case '4'://removecity();
                 if (num[0]==0){
                     printf("Ainda não escolheu nenhuma cidade\nDeseja adicionar uma cidade?\n1-Sim\n2-Não\nOpção: ");
                     scanf("%c",&choice);
@@ -81,7 +89,7 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                     break;
                 }
 
-            case '2'://addcity();
+            case '3'://addcity();
                 if (num[0]<MaxCity) {
                     user = AddCity(user, num, user_cities);
                 }
@@ -90,7 +98,7 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                 }
                     break;
 
-            case '5'://removepdi();
+            case '6'://removepdi();
                 if (num[1]==0){
                     printf("Ainda não escolheu nenhum pdi\nDeseja adicionar um pdi?\n1-Sim\n2-Não\nOpção: ");
                     scanf("%c",&choice);
@@ -104,13 +112,9 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                     break;
                 }
 
-            case '4'://addpdi()
+            case '5'://addpdi()
                 user=AddPdi(user, num,user_pdi);
                 break;
-
-            case '6'://moreinfo();
-                break;
-
 
             case '8'://removehot();
                 if (num[2]==0){
@@ -145,7 +149,6 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
     }while (!exit_user);
     //Salvar User
 }
-
 
 
 User EditUser(User user){
@@ -186,6 +189,34 @@ User EditUser(User user){
     }while (!exit_edituser);
     return user;
 }
+
+void PrintUserInfo(User user) {
+    printf("Nome: %s\nMorada: %s\nData de Nascimento: %s\nNúmero de telefone: %s\n",user.name,user.address,user.date_of_birth,user.phone_number);
+
+    if(user.info.cities!=NULL){
+        USERCity *cidades;
+        cidades = user.info.cities;
+        printf("Locais/Cidades:\n");
+        while (cidades != NULL) {
+            printf("\t%s\n", cidades->name);
+            cidades = cidades->next;
+        }
+    }
+
+    if(user.info.pdi!=NULL){
+        USERPdi *pontos;
+        pontos=user.info.pdi;
+        printf("Pontos de Interesse:\n");
+        while(pontos!=NULL){
+            printf("\t%s\n",pontos->name);
+            pontos=pontos->next;
+        }
+    }
+    if(user.info.hot!=NULL){
+        printf("Hot: %s\n",user.info.hot);
+    }
+}
+
 
 
 //ADD City

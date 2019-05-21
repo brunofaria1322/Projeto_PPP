@@ -4,6 +4,7 @@
 #include <locale.h>
 #define MAX 256
 #define Max 64
+#define MaxCity 3
 
 
 /*Structs*/
@@ -54,6 +55,7 @@ void read_file();
 User Register();
 User EditUser(User user);
 void UserInterface(User user, int num[], char **user_cities,char **user_pdi);    //num[0]=num cidades do user, num[1]==num pdi do user
+void PrintUserInfo(User user);
 
 //AddCity
 User AddCity(User user,int num[],char** user_cities);
@@ -62,6 +64,7 @@ void GetCities(char **cities, char **user_cities);
 //RemoveCity
 User RemoveCity(User user,int num[],char **user_cities);
 void GetUserCities(User user, char **user_cities);
+
 
 //AddPdi
 User AddPdi(User user,int num[],char** user_pdi);
@@ -72,6 +75,10 @@ void GetPdi(char **pdi,char *city,char **user_pdi);
 User RemovePdi(User user,int num[],char **user_pdi);
 void GetUserPdi(User user, char **user_pdi);
 
+//AddHot
+User AddHot(User user,int num[]);
+//RemoveHot
+User RemoveHot(User user, int num[]);
 
 /*Variaveis*/
 CITIES *head_Cities; //define um apontador para a primeira cidade

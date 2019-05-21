@@ -93,7 +93,7 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
     char choice= 'i';
 
     do{
-        printf("\nEscolha uma opção:\n0-Sair/Mudar de User\n1-Editar user\n2-Informação do User\n3-Escolher cidade\n4-Remover cidade\n5-Escolher pdi\n6-Remover pdi\n7-Escolher hot\n8-Remover hot\nOpção: ");
+        printf("\nEscolha uma opção:\n0-Sair/Mudar de User\n1-Editar user\n2-Informação do User\n3-Escolher cidade\n4-Remover cidade\n5-Escolher pdi\n6-Remover pdi\n7-Escolher hot\n8-Remover hot\n9-Construir Viagem\nOpção: ");
         scanf("%c",&choice);
         getchar();
         switch (choice){
@@ -168,6 +168,14 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                     printf("Apenas pode ter um Hot");
                 }
                 break;
+
+            case '9': //sair das opcoes
+                if (num[0]!=3){
+                    printf("Ainda não Escolheu 3 cidades!");
+                }
+                else{
+                    GetPopularity();
+                }
 
             case '0': //sair das opcoes
                 exit_user=1;
@@ -869,4 +877,77 @@ User GetUserFromPointer(User *pointer){
     user.phone_number=pointer->phone_number;
     user.info=pointer->info;
     return user;
+}
+
+void GetPopularity(){
+    User *user;
+    user=head_User;
+
+    USERPdi *pontos;
+    USERCity *cidades;
+
+    while (user!=NULL){
+        cidades=user->info.cities;
+        while (cidades!=NULL){
+            AddPopularityToCity(cidades->name);
+            cidades=cidades->next;
+        }
+        user=user->next;
+
+        pontos=user->info.pdi;
+        while (pontos!=NULL){
+            AddPopularityToPDI(pontos->city,pontos->name);
+            pontos=pontos->next;
+        }
+        if (user->info.hot!=NULL){
+            AddHotToPDI(user->info.hot_city,user->info.hot);
+        }
+    }
+}
+
+void AddPopularityToCity(char *cidade){
+    CITIES *cidades;
+    cidades=head_Cities;
+
+    while (strcmp(cidades->name,cidade)!=0){
+        cidades=cidades->next;
+    }
+
+    cidades->pop+=1;
+}
+
+void AddPopularityToPDI(char *cidade,char *pdi){
+    CITIES *cidades;
+    cidades=head_Cities;
+
+    PDI *pontos;
+
+    while (strcmp(cidades->name,cidade)!=0){
+        cidades=cidades->next;
+    }
+
+    pontos=cidades->pdi;
+    while (strcmp(pontos->name,pdi)!=0){
+        pontos=pontos->next;
+    }
+
+    pontos->pop+=1;
+}
+
+void AddHotToPDI(char *cidade,char *hot){
+    CITIES *cidades;
+    cidades=head_Cities;
+
+    PDI *pontos;
+
+    while (strcmp(cidades->name,cidade)!=0){
+        cidades=cidades->next;
+    }
+
+    pontos=cidades->pdi;
+    while (strcmp(pontos->name,hot)!=0){
+        pontos=pontos->next;
+    }
+
+    pontos->hot+=1;
 }

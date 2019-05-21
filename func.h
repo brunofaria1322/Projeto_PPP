@@ -88,6 +88,12 @@ User AddHot(User user,int num[]);
 //RemoveHot
 User RemoveHot(User user, int num[]);
 
+//Caminho
+void GetPopularity();
+void AddPopularityToCity(char *cidade);
+void AddPopularityToPDI(char *cidade,char *pdi);
+void AddHotToPDI(char *cidade,char *pdi);
+
 /*Variaveis*/
 CITIES *head_Cities; //define um apontador para a primeira cidade
 User *head_User; //define um apontador para o primeiro User

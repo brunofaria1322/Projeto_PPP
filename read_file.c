@@ -28,6 +28,7 @@ void read_file(){
 		    }
 
             Cidades->name=malloc(Max);
+            Cidades->pop=0;
 		    strcpy(Cidades->name,l);
 
             //Contador num Cidades
@@ -64,6 +65,8 @@ void read_file(){
                 //printf("pdi: %s\n",l);
 
                 ptr_Pdi->name=malloc(Max);
+                ptr_Pdi->pop=0;
+                ptr_Pdi->hot=0;
                 strcpy(ptr_Pdi->name,l);
 
                 //pdi.info

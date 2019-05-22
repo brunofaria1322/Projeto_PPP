@@ -6,7 +6,7 @@ int format_user(char* ptr, int i) {
 	// return 0 == esta certo
 	
 	switch (i) {
-		case 1: // nome
+		case 1: // nome/address
 			for (j = 0; ptr[j] != '\0'; j++) {
 				if (!isalpha(ptr[j]) && (ptr[j] != ' ') && (ptr[j] != '.') && (ptr[j] != '-')) {
 					return 1;
@@ -16,7 +16,7 @@ int format_user(char* ptr, int i) {
 		
 		case 2: //data
 			for (j = 0; ptr[j] != '\0'; j++) {
-				if ((j==2 || j==5)&& (ptr[j] != '/')) return 1;
+				if ((j==2 || j==5)&& (ptr[j] != '-')) return 1;
 				if ((j!=2 && j!=5)&& (isdigit(ptr[i])!=0))  return 1;
 				
 			}
@@ -37,14 +37,24 @@ int format_user(char* ptr, int i) {
 			return 1;
 		
 		
-		case 3:
+		case 3: //Telefone
 			for (j = 0; ptr[j] != '\0'; j++) {
 				if (!isdigit(ptr[i])) {
 					return 1;
 				}
 			}
-			if (j == 9) return 0;
-			
+			if (j == 9) {
+			    User *user;
+			    user=head_User;
+			    while(user!=NULL) {
+			        if (strcmp(ptr,user->phone_number)==0){
+			            printf("Já existe um User com esse nuero de telefone!\n");
+                        return 1;
+			        }
+			        user=user->next;
+			    }
+                return 0;
+			}
 			return 1;
 			
 		default:

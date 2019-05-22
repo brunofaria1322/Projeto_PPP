@@ -95,6 +95,7 @@ void GetPopularity();
 void AddPopularityToCity(char *cidade);
 void AddPopularityToPDI(char *cidade,char *pdi);
 void AddHotToPDI(char *cidade,char *pdi);
+void MakeTrip(User user,int num[]);
 
 /*Variaveis*/
 CITIES *head_Cities; //define um apontador para a primeira cidade

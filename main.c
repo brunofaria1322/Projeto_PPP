@@ -175,6 +175,8 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                 }
                 else{
                     GetPopularity();
+                    //Sort por popularidade;
+                    MakeTrip(user,num);
                 }
 
             case '0': //sair das opcoes
@@ -238,9 +240,11 @@ User EditUser(User user){
         getchar();
         switch (choice){
             case '1': //Mudar Nome
-                printf("Nome: ");
-                fgets(user.name,Max,stdin);
-                FixInput(user.name);
+                do{
+                    printf("Nome: ");
+                    fgets(user.name,Max,stdin);
+                    FixInput(user.name);
+                }while (format_user(user.name,1));
                 break;
             case '2'://Mudar morada
                 printf("Morada: ");
@@ -248,14 +252,18 @@ User EditUser(User user){
                 FixInput(user.address);
                 break;
             case '3'://Mudar data de nascimento
-                printf("Data de Nascimento (DD-MM-AAAA): ");
-                fgets(user.date_of_birth,Max,stdin);
-                FixInput(user.date_of_birth);
+                do{
+                    printf("Data de Nascimento (DD-MM-AAAA): ");
+                    fgets(user.date_of_birth,Max,stdin);
+                    FixInput(user.date_of_birth);
+                }while (format_user(user.date_of_birth,2));
                 break;
             case '4'://Mudar Telefone
-                printf("Telefone: ");
-                fgets(user.phone_number,Max,stdin);
-                FixInput(user.phone_number);
+                do{
+                    printf("Telefone: ");
+                    fgets(user.phone_number,Max,stdin);
+                    FixInput(user.phone_number);
+                }while (format_user(user.phone_number,3));
                 break;
             case '0': //sair das opcoes
                 exit_edituser=1;
@@ -807,18 +815,33 @@ User Register() {
     user.address= (char* )malloc(Max);
     user.date_of_birth= (char*) malloc(Max);
     user.phone_number= (char*) malloc(Max);
-    printf("Nome: ");
-    fgets(user.name,Max,stdin);
-    FixInput(user.name);
+
+    //Nome
+    do{
+        printf("Nome: ");
+        fgets(user.name,Max,stdin);
+        FixInput(user.name);
+    }while (format_user(user.name,1));
+
+    //Morada
     printf("Morada: ");
     fgets(user.address,Max,stdin);
     FixInput(user.address);
-    printf("Data de Nascimento (DD-MM-AAAA): ");
-    fgets(user.date_of_birth,Max,stdin);
-    FixInput(user.date_of_birth);
-    printf("Telefone: ");
-    fgets(user.phone_number,Max,stdin);
-    FixInput(user.phone_number);
+
+    //Data de nascimento
+    do{
+        printf("Data de Nascimento (DD-MM-AAAA): ");
+        fgets(user.date_of_birth,Max,stdin);
+        FixInput(user.date_of_birth);
+    }while (format_user(user.date_of_birth,2));
+
+    //Telefone
+    do{
+        printf("Telefone: ");
+        fgets(user.phone_number,Max,stdin);
+        FixInput(user.phone_number);
+    }while (format_user(user.phone_number,3));
+
     return user;
 }
 
@@ -950,4 +973,8 @@ void AddHotToPDI(char *cidade,char *hot){
     }
 
     pontos->hot+=1;
+}
+
+void MakeTrip(User user,int num[]){
+    //Em progresso
 }

@@ -14,7 +14,7 @@ int verifica(char palavra[], char palavra2[], int i, int j) {
 		return -1;
 	}}
 
-PDI insert_list(PDI l,PDI node) {
+PDI insert_pdi(PDI l,PDI node) {
 	PDI tmp,ant;
 	
 	if (l==NULL)
@@ -41,7 +41,7 @@ PDI insert_list(PDI l,PDI node) {
 }
 
 
-CITIES insert_list(CITIES l,CITIES node) {
+CITIES insert_city(CITIES l,CITIES node) {
 	CITIES tmp,ant;
 	
 	if (l==NULL)

@@ -42,7 +42,7 @@ PDI insert_list(PDI l,PDI node) {
 
 
 CITIES insert_list(CITIES l,CITIES node) {
-	PDI tmp,ant;
+	CITIES tmp,ant;
 	
 	if (l==NULL)
 		l=node;

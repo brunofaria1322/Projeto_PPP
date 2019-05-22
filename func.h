@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
+#include <ctype.h>
 #define MAX 256
 #define Max 64
 #define MaxCity 3
@@ -64,6 +65,7 @@ void PrintUserInfo(User user);
 void SaveUser(User user);
 void AddUserToList(User user,User *list);
 User GetUserFromPointer(User *pointer);
+int format_user(char* ptr, int i);
 
 //AddCity
 User AddCity(User user,int num[],char** user_cities);

@@ -1,11 +1,18 @@
+#ifndef PPP_MASTER_FUNC_H
+#define PPP_MASTER_FUNC_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
 #include <ctype.h>
-#define MAX 256
-#define Max 64
+#include <windows.h>
+
+
+#define MAX 512
+#define Max 256
 #define MaxCity 3
+#define MaxChoice 8
 
 
 /*Structs*/
@@ -52,6 +59,7 @@ int Len(char** array,int limit);
 void AddUserCP(char *word, char **list,int limit);
 void FixInput(char *string);
 int format(char* ptr);
+void CleanInput();
 
 void read_file();
 void read_users();
@@ -76,6 +84,7 @@ void GetCities(char **cities, char **user_cities);
 User RemoveCity(User user,int num[],char **user_cities);
 void GetUserCities(User user, char **user_cities);
 
+
 //AddPdi
 User AddPdi(User user,int num[],char** user_pdi);
 void GetPdiByCity( char **user_pdi,char **cities);
@@ -98,8 +107,21 @@ void AddHotToPDI(char *cidade,char *pdi);
 void MakeTrip(User user);
 void RateTrip(CITIES *trip);
 
+//Sorts
+CITIES* SwapCity(CITIES* ptr1,CITIES* ptr2);
+PDI* SwapPdi(PDI* ptr1,PDI* ptr2);
+
+void PopBubbleSort();
+void PopBubbleSortPdi(PDI **head,int count);
+void PopBubbleSortCity(int count);
+
+void AlfabeticBubbleSort();
+void AlfabeticBubbleSortPdi(PDI **head,int count);
+void AlfabeticBubbleSortCity(int count);
+
 /*Variaveis*/
 CITIES *head_Cities; //define um apontador para a primeira cidade
 User *head_User; //define um apontador para o primeiro User
 int num_cities, num_max_pdi,num_pdi,num_users;
 
+#endif //PPP_MASTER_FUNC_H

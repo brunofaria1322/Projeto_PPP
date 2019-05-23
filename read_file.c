@@ -176,6 +176,10 @@ void read_users() {
             }
         }
 
+        if (i==3){
+            cidades->next=NULL;
+        }
+
         //Hot
         if (l[0] != '[') {
             fgets(l, Max, f);

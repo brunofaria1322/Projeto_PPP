@@ -76,7 +76,6 @@ void GetCities(char **cities, char **user_cities);
 User RemoveCity(User user,int num[],char **user_cities);
 void GetUserCities(User user, char **user_cities);
 
-
 //AddPdi
 User AddPdi(User user,int num[],char** user_pdi);
 void GetPdiByCity( char **user_pdi,char **cities);

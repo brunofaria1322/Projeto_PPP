@@ -89,11 +89,11 @@ void FixInput(char *string){
 }
 
 void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
-    int exit_user=0;
+    int exit_user=0,trip=0; //trip= (bool) se foi feita a viagem (para nao guardar o user 2 vezes)
     char choice= 'i';
 
     do{
-        printf("\nEscolha uma opção:\n0-Sair/Mudar de User\n1-Editar user\n2-Informação do User\n3-Escolher cidade\n4-Remover cidade\n5-Escolher pdi\n6-Remover pdi\n7-Escolher hot\n8-Remover hot\n9-Construir Viagem\nOpção: ");
+        printf("\nEscolha uma opção:\n0-Sair/Mudar de User\n1-Editar user\n2-Informação do User\n3-Escolher cidade\n4-Remover cidade\n5-Escolher pdi\n6-Remover pdi\n7-Escolher hot\n8-Remover hot\n9-Construir Viagem\n(Após ser criada e avaliada a viagem será direcionado ao primeiro menu)\nOpção: ");
         scanf("%c",&choice);
         getchar();
         switch (choice){
@@ -174,6 +174,8 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                     printf("Ainda não Escolheu 3 cidades!");
                 }
                 else{
+                    trip=1;
+                    SaveUser(user);
                     GetPopularity();
                     //Sort por popularidade;
                     MakeTrip(user);
@@ -188,12 +190,14 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
 
         }
     }while (!exit_user);
-    SaveUser(user);
+
+    if (!trip){
+        SaveUser(user);
+    }
 }
 
 User FindUser(char* tlm){
     User user1;
-    User *userteste, *userteste1;
     if (head_User==NULL){
         user1.name=NULL;
         return user1;
@@ -202,13 +206,13 @@ User FindUser(char* tlm){
     User *last_user;
     User *user;
     user=head_User;
-    userteste=head_User;
 
     //Se for o primeiro;
     if(strcmp(user->phone_number,tlm)==0){
         head_User=user->next;
         user1=GetUserFromPointer(user);
     }
+
     //Se não for o primeiro;
     else{
         last_user=user;
@@ -228,7 +232,6 @@ User FindUser(char* tlm){
         last_user->next=user->next;
         free(user);
     }
-    userteste1=head_User;
 
     return user1;
 }
@@ -1019,21 +1022,22 @@ void MakeTrip(User user){
 
                 pontos=temp_city->pdi;
                 //se o hot pertencer a esta cidade
-                if (strcmp(user.info.hot_city,cidades->name)==0){
-                    temp_pdi=cidades->pdi;
-                    while (strcmp(user.info.hot,temp_pdi->name)==0){
-                        temp_pdi=temp_pdi->next;
+                if(user.info.hot!=NULL){
+                    if (strcmp(user.info.hot_city,cidades->name)==0){
+                        temp_pdi=cidades->pdi;
+                        while (strcmp(user.info.hot,temp_pdi->name)==0){
+                            temp_pdi=temp_pdi->next;
+                        }
+                        pontos->name=temp_pdi->name;
+                        pontos->info=NULL;
+                        pontos->pop=temp_pdi->pop;
+                        pontos->hot=temp_pdi->hot;
+                        pontos->next=(PDI*) malloc(sizeof(PDI));
+                        pontos=pontos->next;
+                        count_pdi=1;
+                        hot=1;
                     }
-                    pontos->name=temp_pdi->name;
-                    pontos->info=NULL;
-                    pontos->pop=temp_pdi->pop;
-                    pontos->hot=temp_pdi->hot;
-                    pontos->next=(PDI*) malloc(sizeof(PDI));
-                    pontos=pontos->next;
-                    count_pdi=1;
-                    hot=1;
                 }
-
                 temp_pdi=cidades->pdi;
                 while (temp_pdi!=NULL){
                     user_pdi=user.info.pdi;
@@ -1193,21 +1197,22 @@ void RateTrip(CITIES *trip){
         }
         temp_city=temp_city->next;
     }
-
-    int total=0; //Total dos pontos de preferência de todos os PdI existentes
-    temp_city=head_Cities;
-    while (temp_city!=NULL){
-        temp_pdi=temp_city->pdi;
-        while (temp_pdi!=NULL){
-            total+=temp_pdi->pop;
-            temp_pdi=temp_pdi->next;
+    if (percent){
+        int total=0; //Total dos pontos de preferência de todos os PdI existentes
+        temp_city=head_Cities;
+        while (temp_city!=NULL){
+            temp_pdi=temp_city->pdi;
+            while (temp_pdi!=NULL){
+                total+=temp_pdi->pop;
+                temp_pdi=temp_pdi->next;
+            }
+            temp_city=temp_city->next;
         }
-        temp_city=temp_city->next;
+        percent/=total;
+        popularity+=percent;
     }
-    percent/=total;
-    popularity+=percent;
 
     //Final
     popularity/=3;
-    printf("A sua viagem tem uma popularidade de %f\n",popularity);
+    printf("A sua viagem tem uma popularidade de %.2f\n",popularity);
 }

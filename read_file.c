@@ -69,8 +69,7 @@ void read_file(){
                 strcpy(ptr_Pdi->name,l);
 
                 //pdi.info
-                fgets (l, MAX, f);
-                FixInput(l);
+                fscanf(f,"%[^\n]\n",l);
 
                 ptr_Pdi->info=malloc(MAX);
                 strcpy(ptr_Pdi->info,l);
@@ -183,6 +182,7 @@ void read_users() {
         }
         if(l[1]== '\n'){
             user->info.hot=NULL;
+            user->info.hot_city=NULL;
         } else{
             for (i=0;i<strlen(l);i++){
                 if (l[i+1]=='\n'){

@@ -51,6 +51,7 @@ typedef struct USER{
 int Len(char** array,int limit);
 void AddUserCP(char *word, char **list,int limit);
 void FixInput(char *string);
+int format(char* ptr);
 
 void read_file();
 void read_users();
@@ -95,7 +96,8 @@ void GetPopularity();
 void AddPopularityToCity(char *cidade);
 void AddPopularityToPDI(char *cidade,char *pdi);
 void AddHotToPDI(char *cidade,char *pdi);
-void MakeTrip(User user,int num[]);
+void MakeTrip(User user);
+void RateTrip(CITIES *trip);
 
 /*Variaveis*/
 CITIES *head_Cities; //define um apontador para a primeira cidade

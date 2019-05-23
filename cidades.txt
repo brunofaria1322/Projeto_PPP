@@ -1,28 +1,264 @@
-[
+﻿[
 Viseu
-S� Catedral de Viseu
-Catedral do s�culo XII com duas torres g�meas, fachada deslumbrante e teto abobado impressionante. hor�rio: 9�12h|14�19h exceto 5�
-Museu de Gr�o Vasco
-Obras do ic�nico pintor renascentista. hor�rio: 10�13h|14�18h
+Se Catedral de Viseu
+Catedral do século XII com duas torres gémeas, fachada deslumbrante e teto abobado impressionante. horário: 9–12h|14–19h exceto 5ª
+Museu de Grao Vasco
+Obras do icônico pintor renascentista. horário: 10–13h|14–18h
 Parque do Fontel
-O parque ocupa uma �rea de 10 hectares de exuberante vegeta��o e jardins de estilo italiano. hor�rio: 24h
+O parque ocupa uma área de 10 hectares de exuberante vegetação e jardins de estilo italiano. horário: 24h
 Cava de Viriato
-� um fortaleza constru�da em terra batida, rodeada por um fosso. � monumento nacional desde 1910. hor�rio: 3� 14-18h,4�-dom 10-13h|14-18h
+É um fortaleza construída em terra batida, rodeada por um fosso. É monumento nacional desde 1910. horário: 3ª 14-18h,4ª-dom 10-13h|14-18h
 Casa Museu Almeida Moreira
-Casa hist�rica com obras de arte, do professor e cr�tico de arte Francisco Moreira. hor�rio: 3� 14-18h,4�-dom 10-13h|14-17h
+Casa histórica com obras de arte, do professor e crítico de arte Francisco Moreira. horário: 3ª 14-18h,4ª-dom 10-13h|14-17h
 Museu do Quartzo
-Est� localizado no Monte de Santa Luzia. hor�rio: 3�-domingo 10-12h|14-17h
+Está localizado no Monte de Santa Luzia. horário: 3ª-domingo 10-12h|14-17h
 ]
 [
 Lisboa
-Pra�a do Com�rcio
-� uma das maiores pra�as da Europa onde se pode ver o imponente cavalo Gentil, da autoria de Machado de Castro. hor�rio: 24h
-Mosteiro dos Jer�nimos
-� um mosteiro portugu�s da Ordem de S�o Jer�nimo constru�do no s�culo XVI. hor�rio: 10-17.30h
+Praça do Comercio
+É uma das maiores praças da Europa onde se pode ver o imponente cavalo Gentil, da autoria de Machado de Castro. horário: 24h
+Mosteiro dos Jeronimos
+É um mosteiro português da Ordem de São Jerónimo construído no século XVI. horário: 10-17.30h
 Museu do Design e da Moda
-Considerada uma das mais importantes colec��es de design e de moda a n�vel internacional. hor�rio: 3�-dom 10-18h
-Ocean�rio no Parque das Na��es
-Constitui-se em um aqu�rio p�blico e institui��o de pesquisa sobre Biologia marinha e Oceanografia. hor�rio: 10-19h
-Cais do Sodr�
-Zona com melhores bares, discotecas e restaurantes em Lisboa e vista para o Tejo. hor�rio: 24h
+Considerada uma das mais importantes colecções de design e de moda a nível internacional. horário: 3ª-dom 10-18h
+Oceanario no Parque das Nacoes
+Constitui-se em um aquário público e instituição de pesquisa sobre Biologia marinha e Oceanografia. horário: 10-19h
+Cais do Sodre
+Zona com melhores bares, discotecas e restaurantes em Lisboa e vista para o Tejo. horário: 24h
+]
+[
+Vila Nova de Gaia
+Zoo Santo Inacio
+É o maior e mais verde jardim zoológico do norte de Portugal. horário: 10-19h
+Real Companhia Velha
+É a empresa mais antiga de Portugal tendo sido fundada por D. José I. horário: 10-18h
+Ponte Luis I
+É uma ponte em estrutura metálica com dois tabuleiros. horário: 24h
+]
+[
+Porto
+Torre dos Clerigos
+É um notável conjunto arquitetónico sendo considerado o ex-libris dessa cidade. horário: 9-19h
+Livraria Lello
+Distingue-se pela sua belíssima fachada Arte Nova, com apontamentos neogóticos. horário: 9.30-19h
+Casa da Musica
+A Casa da Música é uma sala de concertos, localizada na cidade do Porto. horário: 2ª-sáb 09.30-19h
+Avenida dos Aliados
+É um importante arruamento na freguesia de Santo Ildefonso, na Baixa da cidade do Porto. horário: 24h
+Jardins do palacio de Cristal
+São um aprazível espaço verde a partir do qual se desfrutam deslumbrantes panorâmicas do rio Douro e do mar. horário: 8-19h
+]
+[
+Braga
+Jardim de Santa Barbara
+Trata-se de um jardim público municipal,tendo no centro uma fonte do século XVII com a estátua de Santa Bárbara. horário: 24h
+Teatro Circo
+É considerado o mais prestigiado teatro bracarense. horário: 2ª-6ª 10-19h,sáb 14.30-19h
+Mosteiro de Tibaes
+O conjunto engloba a Igreja de Tibães e o Cruzeiro de Tibães. horário: 3ª-dom: 10-19h
+]
+
+Coimbra
+Moelas
+Na zona alta de Coimbra, ao lado da Sé Velha, situa-se um dos bares mais convidativos a longas noites. horario:2ª-sáb 22-4h
+Se Velha
+Onde foi coroado o segundo rei de Portugal. horário: 2ª-sáb 10-18h, dom 13-18h Todas as visitas estarão condicionadas durante os Actos de Culto
+Museu Nacional de Machado de Castro
+O seu espólio inclui importantes núcleos de escultura, pintura e Artes decorativas. horário: 3ª-dom 10-18h
+Jardim Botanico da UC
+É um jardim botânico que apresenta programas de conservação para a International Agenda for Botanic Gardens in Conservation. horário: 9-20h
+]
+[
+Funchal
+Museu CR7
+É o local onde está retratada a história de Cristiano Ronaldo e onde estão expostos os 126 troféus individuais. horário:2ª-sáb 10-18h
+Marina
+Esta infra-estrutura possui 210 lugares para iates e uma zona de atracação destinada às embarcações de atividades náutico e turísticas. horário: 24h
+Miradouro Pico dos Barcelos
+Localizado a cerca de 355 metros de altitude permite uma vista panorâmica sobre a baía. horário: 8-22h
+Casa Museu Frederico de Freitas
+Casa-museu com, entre outros artefatos, uma excelente coleção de azulejos. horário: 3ªsáb 10-17.30h
+]
+[
+Aveiro
+Costa Nova do Prado
+Trecho de praia com calçadão e dunas, conhecido pelas casas listradas e coloridas. horário: 24h
+Mosteiro de Jesus
+Museu de arte religiosa em um convento do século 15, com uma igreja barroca e a tumba da princesa Santa Joana. horário: 10-18h
+Museu Maritimo de Ilhavo e Aquario dos Bacalhaus
+Este museu moderno com bacalhaus vivos conta a história marítima local. horário: 10-18h
+Canal Central de Aveiro
+Passeio de barco pelo rio em gôndola. horário: 24h
+]
+[
+Leiria
+Castelo de Leiria
+Fortaleza medieval em penhasco com jardins, as ruínas de uma igreja gótica e vistas panorâmicas da cidade. horário: 10-18h
+Fundacao Batalha de Aljubarrota
+É um espaço museológico que tem como objetivo a salvaguarda, estudo do campo de Batalha de Aljubarrota. horário: 10-17.30h
+Museu de Leiria
+Exposições de história regional, de arqueologia e de arte num antigo convento do séc. XVI. horário: 9.30-17.30h
+Vale do Lapedo
+É uma depressão de grande valor arqueológico que se situa na Freguesia de Santa Eufémia. horário: 24h
+]
+[
+Evora
+Capela dos Ossos
+As paredes interiores desta pequena capela do séc. XVI estão repletas de ossos e caveiras de monges. horário:0912.45h|14.30-17.30h
+Templo Romano
+Ruínas de templo de granito e mármore construído no século 1 d.C. para o falecido imperador Augusto. horário: 24h
+Cromeleque dos Almendres
+Monumento neolítico de pedras verticais, algumas com inscrições. horário: 24h
+Catedral de Evora
+Esta catedral católica romana elevada tem vistas panorâmicas da cidade a partir da torre. horário: 3ª-dom 9-17h
+]
+[
+Guimaraes
+Castelo de Guimaraes
+Fortaleza real imponente, considerado o local de nascimento de Afonso Henriques. horário: 10-18h
+Paco dos Duques de Braganca
+Residência medieval com decoração da época e museu com obras de porcelana e tapeçarias incríveis. horário: 10-18h
+Igreja de Nossa Senhora da Oliveira
+Igreja com arquitetura gótica e obras de arte barrocas no interior ornamentado. horário:2ª-sáb 8.30-12h|15.30-19.30h
+Citania de Briteiros
+Assentamentos antigos em colinas Sítio arqueológico com ruínas da Idade do Ferro, além de várias estruturas e artefatos. horário: 9-17h
+]
+[
+Faro
+Ria Formosa
+É um sapal que se estende pelos concelhos de Loulé, Faro, Olhão, Tavira e Vila Real de Santo António. horário: 24h
+Ilha de Tavira
+É uma ilha arenosa com cerca de 11 km de comprimento, localizada junto à costa algarvia. horário: 24h
+Se de Faro
+Igreja com um museu religioso Catedral católica do século XIII com um pequeno museu de relíquias e objetos religiosos. horário: 2ª-6ª 10-17h
+Igreja do Carmo
+Igreja católica do séc. XVIII conhecida pela pequena capela construída com os ossos e os crânios dos monges.horário: 2ª-6ª 15-18h, sab-dom 10-13h
+]
+[
+Ponta Delgada
+Portas da Cidade
+Arcos históricos e entrada da cidade Portas famosas do século 18 com arcos enfeitados em uma praça pública charmosa e iluminada. horário: 24h
+Gruta do Carvao
+Tour guiado nesse longo sistema de tubos de lava com três seções e muitas estruturas geológicas. horário: 10-12.30h|14-18h
+A Arruda
+Plantação de ananás histórica com visitas gratuitas e uma loja de recordações que vende produtos de ananás. horário: 9-20h
+Forte de Sao Bras
+Fortaleza renascentista costeira, datada de 1552, que agora é sede de um museu militar. horário: 10-18h
+]
+[
+Portimao
+Praia da Rocha
+Esta praia tem uma grande extensão de areal e muitas lojas/bares. horário: 24h
+Praia Grande
+Esta praia situa-se no estuário do rio Arade na entrada. horário: 24h
+Museu de Portimao
+Museu histórico regional em antiga fábrica de conservas com tradições de pesca e conserva de sardinha. horário: 10-18h
+Praia dos Caneiros
+Junto às falésias, esta praia pitoresca com água cristalina tem espreguiçadeiras para alugar e um restaurante. horário: 24h
+Forte de Santa Catarina
+Ruínas de um forte medieval com escaladas até o topo e vistas pitorescas do oceano e do pôr do sol. horário: 24h
+]
+[
+Povoa de Varzim
+Casino da Povoa
+Centro de entretenimento com bares e restaurantes, espetáculos ao vivo, um espaço de jogo e slot machines. horário: 22-3h
+Parque Natural
+Recifes, praias e dunas formam este parque costeiro protegido que abriga uma variedade de peixes e aves. horário: 24h
+Praia da Apulia
+É uma praia distinguida com a Bandeira azul. horário: 24h
+]
+[
+Figueira da Foz
+Praia de Quiaios
+Extensa praia de areia conhecida pela prática de surfe e bodyboard com restaurantes e uma piscina externa. horário: 24h
+Cabo Mondego
+Farol, fóssil, falésia e praia. horário: 24h
+Casino
+Casino com salas de jogos para roleta, blackjack e pôquer, caça-níqueis e um teatro de estilo clássico. horário: 15-3h
+Serra da Boa Viagem
+Situa-se a três quilómetros a Norte da cidade da Figueira da Foz com 261,88 metros de altitude. horário: 24h
+]
+[
+Santarem
+Parque Natural das Serras de Aire e Candeeiros
+Reserva natural com trilhas e cavernas. Grande área geológica protegida e aberta ao público com cavernas, trilhas sinalizadas e cachoeiras. horário: 24h
+Monumento Natural de Serra de Aire
+Pegadas fósseis de dinossauros saurópodes da era jurássica encontram-se em colinas paisagísticas. horário: 10-12.30h|14-18h
+Jardim das Portas do Sol
+Situa-se entre a confluência do rio Almonda e rio Tejo. horário: 24h
+Centro Ciencia Viva do Alviela
+Carsoscópio localiza-se na fronteira entre a Estremadura e o Ribatejo. horário: 10-18h 
+]
+[
+Vila Real
+Casa de Mateus
+Propriedade dos anos 1700 com mansão italianizada com interiores da época, jardins formais e tours guiados. horário: 9-19h
+Parque Natural do Alvao
+É uma área protegida de Portugal que possui reduzidas dimensões e situada entre os concelhos de Mondim de Basto e Vila Real. horário: 24h
+Serra do Marao
+É a sétima maior elevação de Portugal Continental, com 1416 metros de altitude e 681 metros de proeminência topográfica. horário: 24h
+Santuario de Panoias
+Localiza-se em Vale de Nogueiras, no concelho de Vila Real. Fica a alguns quilómetros da cidade. horário: 9-12.30h|14-17h
+]
+[
+Guarda
+Parque Arqueologico do Vale do Coa
+Parque arqueológico com visitas aos principais sítios de arte rupestre. horário: 24h 
+Torre Serra da Estrela
+A Torre é o ponto de maior altitude da Serra da Estrela e também de Portugal Continental, e o segundo mais elevado de Portugal. horário: 24h
+Museu do Pao
+Museu com exposições sobre moagem, panificação, entrega de pão e o respectivo significado social e religioso. horário: 10-18h
+Poco do Inferno
+É uma pequena lagoa em plena Serra da Estrela resultante de uma queda de água com cerca de 10 metros de altura. horário: 24h
+]
+[
+Viana do Castelo
+Parque Nacional Peneda-Geres
+Reserva nacional montanhosa com lobos e vestígios pré-históricos, além de local para acampamento e trilhas. horário: 24h
+Praca-forte de Valenca
+Estrutura medieval panorâmica com lojas, restaurantes e locais históricos dentro das muralhas da fortaleza. horário: 24h
+Navio-Hospital Gil Eannes
+Atualmente ancorado no porto de pesca em Viana do Castelo, tem a função de espaço museológico e Pousada da Juventude. horário: 9.30-19h
+Castelo de Lindoso
+Castelo medieval bem preservado com vistas e um amplo grupo de celeiros históricos abaixo. horário: 10.30-12.30h|14-17h
+]
+[
+Braganca
+Castelo de Braganca
+O Castelo de Bragança localiza-se na freguesia de Santa Maria, no centro histórico da cidade, concelho e distrito de Bragança. horário: 9-12h|14-17h
+Domus Municipalis de Braganca
+Destaca-se por ser o único exemplar de arquitetura civil em estilo Românico na Península Ibérica. horário: 24h
+Museu do Abade de Bacal
+Localiza-se na união de freguesias Sé, Santa Maria e Meixedo, na cidade e concelho de Bragança, distrito de mesmo nome. horário: 9.30-12.30h|14-18h
+Museu Iberico da Mascara e do Traje
+Instalado numa antiga casa na cidadela de Bragança. No seu acervo estão objectos de 29 localidades. horário: 9-13h|14-17h
+]
+[
+Beja
+Castelo de Beja
+Castelo de pedra do século 13 reconstruído e situado em colina, rodeado por jardins paisagísticos. horário: 9.30-12.30h|14-18h
+Museu Rainha Dona Leonor
+Exposições de arte em antigo convento. Convento barroco português transformado em museu com obras artísticas e históricas. horário: 9.30-12.30h|14-18h
+Museu Jorge Vieira
+É um museu de arte localizada na cidade Beja que acolhe obras do escultor Jorge Vieira e diversas atividades culturais. horário: 9.30-12.30h|14-18h
+]
+[
+Sao Joao da Madeira
+Castro de Romariz
+É um povoado fortificado datado do século V a.C., com níveis de ocupação até ao século I d.C. Considerada uma das estações. horário: 9.30-12.30h|14-18h
+Museu da Chapelaria
+É o único museu da Península focado em chapéus. horário: 9.30-12.30h|14-18h
+Parque Urbano do Rio Ul
+É um moderno parque público localizado em São João da Madeira, Portugal. horário: 24h
+Museu do Calcado
+Retrata a memória da indústria do calçado e a realidade do design de calçado em Portugal. horário: 9.30-12.30h|14-18h
+]
+[
+Angra do Heroismo
+Monte Brasil Vulcao
+Localiza-se na freguesia da Sé, na cidade e concelho de Angra do Heroísmo. Constitui-se no cone abatido de um antigo vulcão. horário: 24h
+Jardim Duque da Terceira
+Localiza-se no centro histórico da cidade e é considerado um dos mais belos jardins clássicos do arquipélago. horário: 8-18h
+Museu de Angra do Heroismo
+O Museu de Angra do Heroísmo localiza-se no Centro Histórico de Angra do Heroísmo, na ilha Terceira, nos Açores. 9.30-17.30
 ]

@@ -176,7 +176,7 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                 else{
                     GetPopularity();
                     //Sort por popularidade;
-                    MakeTrip(user,num);
+                    MakeTrip(user);
                 }
 
             case '0': //sair das opcoes
@@ -193,6 +193,7 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
 
 User FindUser(char* tlm){
     User user1;
+    User *userteste, *userteste1;
     if (head_User==NULL){
         user1.name=NULL;
         return user1;
@@ -201,10 +202,10 @@ User FindUser(char* tlm){
     User *last_user;
     User *user;
     user=head_User;
+    userteste=head_User;
 
     //Se for o primeiro;
     if(strcmp(user->phone_number,tlm)==0){
-        free(head_User);
         head_User=user->next;
         user1=GetUserFromPointer(user);
     }
@@ -227,6 +228,7 @@ User FindUser(char* tlm){
         last_user->next=user->next;
         free(user);
     }
+    userteste1=head_User;
 
     return user1;
 }
@@ -314,10 +316,14 @@ User AddCity(User user,int num[],char** user_cities) {
     char **cities;
     cities = (char**) malloc(num_cities* sizeof(char*));
     GetCities(cities,user_cities);
-    int exit=0, i, len;
-    char choice= 'i';
+    int exit=0, i, len, x;
+    char choice[8];
     USERCity *cidades;
     do{
+        if (num[0]==3){
+            printf("Apenas pode ter um máximo de 3 Locais");
+            return user;
+        }
         len=Len(cities,num_cities);
         printf("%d",len);
         printf("\nEscolha uma opção:\n0-Voltar\n");
@@ -325,15 +331,20 @@ User AddCity(User user,int num[],char** user_cities) {
             printf("%d-%s\n",i,cities[i-1]);
         }
         printf("Opção: ");
-        scanf("%c",&choice);
-        getchar();
-        if (choice=='0') {
+        fgets(choice,8,stdin);
+        FixInput(choice);
+        x= format(choice);
+		if (x){
+            printf("insira apenas numeros\n");
+            continue;
+        }
+        if (choice[0]=='0') {
             exit = 1;
         }
         else{
-            choice=(int) choice-'0';
-            if (choice>0 && choice<=len){
-                choice-=1;
+            x=atoi(choice);
+            if (x>0 && x<=len){
+                x-=1;
 
                 if(user.info.cities==NULL){
                     user.info.cities=(USERCity*)malloc(sizeof(USERCity));
@@ -350,12 +361,12 @@ User AddCity(User user,int num[],char** user_cities) {
 
                 cidades->next=NULL;
                 cidades->name=malloc(Max);
-                strcpy(cidades->name,cities[choice]);
+                strcpy(cidades->name,cities[x]);
 
-                AddUserCP(cities[choice],user_cities,MaxCity);
+                AddUserCP(cities[x],user_cities,MaxCity);
                 num[0]+=1;
 
-                for (i = choice ;i < len-1; i++) {
+                for (i = x ;i < len-1; i++) {
                     cities[i] = cities[i + 1];
                 }
                 cities[len-1]="";
@@ -363,7 +374,6 @@ User AddCity(User user,int num[],char** user_cities) {
         }
 
     }while (!exit);
-    printf("\n---\n%s\n%s\n---\n",user_cities[0],user_cities[1]);
     return user;
 }
 
@@ -401,8 +411,8 @@ void GetCities(char **cities, char **user_cities){
 //Remove City
 User RemoveCity(User user,int num[],char **user_cities) {
 
-    int exit=0;
-    char choice= 'i';
+    int exit=0,x;
+    char choice[8];
     USERCity *cidades;
     do{
         printf("\nEscolha uma opção:\n0-Voltar\n");
@@ -411,15 +421,21 @@ User RemoveCity(User user,int num[],char **user_cities) {
             printf("%d-%s\n",i,user_cities[i-1]);
         }
         printf("Opção: ");
-        scanf("%c",&choice);
-        getchar();
-        if (choice=='0') {
+        fgets(choice,8,stdin);
+        FixInput(choice);
+        x= format(choice);
+        if (x){
+            printf("insira apenas numeros\n");
+            continue;
+        }
+
+        if (choice[0]=='0') {
             exit = 1;
         }
         else{
-            choice=(int) choice-'0';
-            if (choice>0 && choice<=num[0]){
-                choice-=1;
+            x=atoi(choice);
+            if (x>0 && x<=num[0]){
+                x-=1;
                 //se só houver uma cidade
                 if (num[0]==1){
                     free(user.info.cities);
@@ -428,7 +444,7 @@ User RemoveCity(User user,int num[],char **user_cities) {
                 else{
                     cidades=user.info.cities;
                     //se for a primeira cidade
-                    if (strcmp(user_cities[choice],cidades->name)==0){
+                    if (strcmp(user_cities[x],cidades->name)==0){
                         cidades=cidades->next;
                         free(user.info.cities);
                         user.info.cities=cidades;
@@ -442,7 +458,7 @@ User RemoveCity(User user,int num[],char **user_cities) {
                         user.info.cities=cidade_anterior;
 
                         for (i=0;i<num[0];i++){
-                            if (strcmp(user_cities[choice],cidades->name)==0) {
+                            if (strcmp(user_cities[x],cidades->name)==0) {
                                 cidade_anterior->next = cidades->next;
                                 free(cidades);
                                 break;
@@ -452,7 +468,7 @@ User RemoveCity(User user,int num[],char **user_cities) {
                         }
                     }
                 }
-                for (i = choice; i < num[0] - 1; i++){
+                for (i = x; i < num[0] - 1; i++){
                     user_cities[i] = user_cities[i + 1];
                 }
                 user_cities[num[0]-1]="";
@@ -975,6 +991,223 @@ void AddHotToPDI(char *cidade,char *hot){
     pontos->hot+=1;
 }
 
-void MakeTrip(User user,int num[]){
-    //Em progresso
+void MakeTrip(User user){
+    CITIES *trip, *temp_city, *cidades;
+    USERCity *user_city;
+    cidades=head_Cities; // head da sorted por popularidade
+
+    PDI *pontos,*temp_pdi;
+    USERPdi *user_pdi;
+
+    trip=(CITIES*) malloc(sizeof(CITIES)); //header para viagem
+    temp_city=trip;
+
+    //Cidades da viagem
+    int count_city=0,i,count_pdi,hot=0;
+
+    while (cidades!=NULL){
+        user_city=user.info.cities;
+        while (user_city!=NULL){
+            if (strcmp(user_city->name,cidades->name)==0){
+                count_city++;
+                temp_city->name=cidades->name;
+                temp_city->pop=cidades->pop;
+                temp_city->pdi=(PDI*) malloc(sizeof(PDI));
+
+                //PDI das Cidades da viagem
+                count_pdi=0;
+
+                pontos=temp_city->pdi;
+                //se o hot pertencer a esta cidade
+                if (strcmp(user.info.hot_city,cidades->name)==0){
+                    temp_pdi=cidades->pdi;
+                    while (strcmp(user.info.hot,temp_pdi->name)==0){
+                        temp_pdi=temp_pdi->next;
+                    }
+                    pontos->name=temp_pdi->name;
+                    pontos->info=NULL;
+                    pontos->pop=temp_pdi->pop;
+                    pontos->hot=temp_pdi->hot;
+                    pontos->next=(PDI*) malloc(sizeof(PDI));
+                    pontos=pontos->next;
+                    count_pdi=1;
+                    hot=1;
+                }
+
+                temp_pdi=cidades->pdi;
+                while (temp_pdi!=NULL){
+                    user_pdi=user.info.pdi;
+                    while (user_pdi!=NULL){
+                        if (strcmp(user_pdi->name,temp_pdi->name)==0){
+                            if (hot){
+                                if (strcmp(temp_pdi->name,user.info.hot)==0){
+                                    continue;
+                                }
+                            }
+                            pontos->name=temp_pdi->name;
+                            pontos->info=NULL;
+                            pontos->pop=temp_pdi->pop;
+                            pontos->hot=temp_pdi->hot;
+                            count_pdi++;
+                            if (count_pdi==3){
+                                pontos->next=NULL;
+                                break;
+                            }
+                            pontos->next=(PDI*) malloc(sizeof(PDI));
+                            pontos=pontos->next;
+                        }
+                        user_pdi=user_pdi->next;
+                    }
+                    if (count_pdi==3){
+                        break;
+                    }
+                    temp_pdi=temp_pdi->next;
+                }
+
+                // Se nao tiver escolhido 3 pdi para esta cidade(a contar com o hot)
+                if (count_pdi<3){
+                    user_pdi=user.info.pdi;
+                    temp_pdi=cidades->pdi;
+                    int used;
+                    while (temp_pdi!=NULL){
+                        if (hot){
+                            if (strcmp(temp_pdi->name,user.info.hot)==0){
+                                continue;
+                            }
+                        }
+                        used=0;
+                        while (user_pdi!=NULL){
+                            if (strcmp(temp_pdi->name,user_pdi->name)==0){
+                                used=1;
+                                break;
+                            }
+                            user_pdi=user_pdi->next;
+                        }
+                        if(!used){
+                            pontos->name=temp_pdi->name;
+                            pontos->info=NULL;
+                            pontos->pop=temp_pdi->pop;
+                            pontos->hot=temp_pdi->hot;
+                            count_pdi++;
+                            if (count_pdi==3){
+                                pontos->next=NULL;
+                                break;
+                            }
+                            pontos->next=(PDI*) malloc(sizeof(PDI));
+                            pontos=pontos->next;
+                        }
+                        temp_pdi=temp_pdi->next;
+                    }
+                }
+
+                if (count_city==3){
+                    temp_city->next=NULL;
+                    break;
+                }
+                temp_city->next=(CITIES*) malloc(sizeof(CITIES));
+                temp_city=temp_city->next;
+            }
+            user_city=user_city->next;
+        }
+        if (count_city==3){
+            break;
+        }
+        cidades=cidades->next;
+    }
+
+    temp_city=trip;
+    printf("Sua Viagem:\n");
+
+    while (temp_city!=NULL){
+        printf("%s:\n",temp_city->name);
+        temp_pdi=temp_city->pdi;
+        while (temp_pdi!=NULL){
+            printf("\t%s:\n",temp_pdi->name);
+            temp_pdi=temp_pdi->next;
+        }
+        temp_city=temp_city->next;
+    }
+
+    //Avalia trip
+    RateTrip(trip);
+}
+
+void RateTrip(CITIES *trip){
+    float popularity=0,percent;
+    CITIES *temp_city;
+    PDI *temp_pdi;
+    User *user;
+    USERCity *local;
+    int found;
+
+    // 1-% de utilizadores que tem pelo menos 1 local favorito entre os incluídos na viagem;
+    user=head_User;
+    percent=0;
+    while (user!=NULL){
+        found=0;
+        local=user->info.cities;
+        while (local!=NULL){
+            temp_city=trip;
+            while (temp_city!=NULL){
+                if (strcmp(temp_city->name,local->name)==0){
+                    percent+=1;
+                    found=1;
+                    break;
+                }
+                temp_city=temp_city->next;
+            }
+            if (found){
+                break;
+            }
+            local=local->next;
+        }
+        user=user->next;
+    }
+    percent/=num_users;
+    popularity+=percent;
+
+    // 2-% de utilizadores cujo PdI “hot” está incluído nesta viagem;
+    percent=0;
+    temp_city=trip;
+    while (temp_city!=NULL){
+        temp_pdi=temp_city->pdi;
+        while (temp_pdi!=NULL){
+            percent+=temp_pdi->hot;
+            temp_pdi=temp_pdi->next;
+        }
+        temp_city=temp_city->next;
+    }
+    percent/=num_users;
+    popularity+=percent;
+
+    // 3-% das preferências de PdI:
+    // Total de pontos de preferência dos PdI incluídos a dividir pelo total dos pontos de preferência de todos os PdI existentes.
+
+    percent=0; //Total de pontos de preferência dos PdI incluídos
+    temp_city=trip;
+    while (temp_city!=NULL){
+        temp_pdi=temp_city->pdi;
+        while (temp_pdi!=NULL){
+            percent+=temp_pdi->pop;
+            temp_pdi=temp_pdi->next;
+        }
+        temp_city=temp_city->next;
+    }
+
+    int total=0; //Total dos pontos de preferência de todos os PdI existentes
+    temp_city=head_Cities;
+    while (temp_city!=NULL){
+        temp_pdi=temp_city->pdi;
+        while (temp_pdi!=NULL){
+            total+=temp_pdi->pop;
+            temp_pdi=temp_pdi->next;
+        }
+        temp_city=temp_city->next;
+    }
+    percent/=total;
+    popularity+=percent;
+
+    //Final
+    popularity/=3;
+    printf("A sua viagem tem uma popularidade de %f\n",popularity);
 }

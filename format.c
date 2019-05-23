@@ -39,7 +39,7 @@ int format_user(char* ptr, int i) {
 		
 		case 3: //Telefone
 			for (j = 0; ptr[j] != '\0'; j++) {
-				if (!isdigit(ptr[i])) {
+				if (!isdigit(ptr[j])) {
 					return 1;
 				}
 			}
@@ -62,3 +62,17 @@ int format_user(char* ptr, int i) {
 	}
 
 }
+
+//choice-se so contem numeros
+int format(char* ptr) {
+    int j = 0;
+    // return 1 == esta errado
+    // return 0 == esta certo
+    for (j = 0; ptr[j] != '\0'; j++) {
+        if (!isdigit(ptr[j])) {
+            return 1;
+        }
+    }
+    return 0;
+}
+

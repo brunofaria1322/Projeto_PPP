@@ -34,7 +34,9 @@ int main() {
         printf("Escolha uma opção:\n0-Sair\n1-Novo user\n2-User existente\nOpção: ");
         fgets(input,Max,stdin);
         system("clear");
-        CleanInput();
+        if (strlen(input)==Max){
+            CleanInput();
+        }
         FixInput(input);
         x= format(input);
         if (x) {
@@ -50,6 +52,9 @@ int main() {
             case '2'://User já existente
                 printf("Insira o seu numero de telemovel: ");
                 fgets(tlm,Max,stdin);
+                if (strlen(tlm)==Max){
+                    CleanInput();
+                }
                 FixInput(tlm);
 
                 //procura user
@@ -102,7 +107,7 @@ int main() {
 
 void CleanInput(){
     int c;
-    while ((c = getchar()) != '\n' && c != EOF) { }
+    while ((c = getchar()) != '\n' && c != EOF && c != '\r') { }
 }
 
 //Remove o /n do input no fgets
@@ -120,7 +125,7 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
         printf("\nEscolha uma opção:\n0-Sair/Mudar de User\n1-Editar user\n2-Informação do User\n3-Escolher cidade\n4-Remover cidade\n5-Escolher pdi\n6-Remover pdi\n7-Escolher hot\n8-Remover hot\n9-Construir Viagem\n(Após ser criada e avaliada a viagem será direcionado ao primeiro menu)\nOpção: ");
         fgets(input,Max,stdin);
         system("clear");
-        if (strlen(input)!=Max){
+        if (strlen(input)==Max){
             CleanInput();
         }
         FixInput(input);
@@ -147,6 +152,9 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                 if (num[0]==0){
                     printf("Ainda não escolheu nenhuma cidade\nDeseja adicionar uma cidade?\n1-Sim\n2-Não\nOpção: ");
                     fgets(input,Max,stdin);
+                    if (strlen(input)==Max){
+                        CleanInput();
+                    }
                     choice=input[0];
                     if (choice!='1'){
                         break;
@@ -170,6 +178,9 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                 if (num[1]==0){
                     printf("Ainda não escolheu nenhum pdi\nDeseja adicionar um pdi?\n1-Sim\n2-Não\nOpção: ");
                     fgets(input,Max,stdin);
+                    if (strlen(input)==Max){
+                        CleanInput();
+                    }
                     choice=input[0];
                     if (choice!='1'){
                         break;
@@ -188,6 +199,9 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                 if (num[2]==0){
                     printf("Ainda não escolheu nenhuma hot\nDeseja adicionar um hot?\n1-Sim\n2-Não\nOpção: ");
                     fgets(input,Max,stdin);
+                    if (strlen(input)==Max){
+                        CleanInput();
+                    }
                     choice=input[0];
                     if (choice!='1'){
                         break;
@@ -209,6 +223,7 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
             case '9': //Caminho
                 if (num[0]!=MaxCity){
                     printf("Ainda não Escolheu 3 cidades!");
+                    break;
                 }
                 else{
                     trip=1;
@@ -282,7 +297,7 @@ User EditUser(User user){
         printf("\nEscolha uma opção:\n0-Sair da edição de User\n1-Alterar Nome\n2-Alterar Morada\n3-Alterar Data de Nascimento\n4-Alterar Número de Telefone\nOpção: ");
         fgets(input,Max,stdin);
         system("clear");
-        if (strlen(input)!=Max){
+        if (strlen(input)==Max){
             CleanInput();
         }
         FixInput(input);
@@ -301,18 +316,27 @@ User EditUser(User user){
                 do{
                     printf("Nome: ");
                     fgets(user.name,Max,stdin);
+                    if (strlen(user.name)==Max){
+                        CleanInput();
+                    }
                     FixInput(user.name);
                 }while (format_user(user.name,1));
                 break;
             case '2'://Mudar morada
                 printf("Morada: ");
                 fgets(user.address,Max,stdin);
+                if (strlen(user.address)==Max){
+                    CleanInput();
+                }
                 FixInput(user.address);
                 break;
             case '3'://Mudar data de nascimento
                 do{
                     printf("Data de Nascimento (DD-MM-AAAA): ");
                     fgets(user.date_of_birth,Max,stdin);
+                    if (strlen(user.date_of_birth)==Max){
+                        CleanInput();
+                    }
                     FixInput(user.date_of_birth);
                 }while (format_user(user.date_of_birth,2));
                 break;
@@ -320,6 +344,9 @@ User EditUser(User user){
                 do{
                     printf("Telefone: ");
                     fgets(user.phone_number,Max,stdin);
+                    if (strlen(user.phone_number)==Max){
+                        CleanInput();
+                    }
                     FixInput(user.phone_number);
                 }while (format_user(user.phone_number,MaxCity));
                 break;
@@ -358,6 +385,7 @@ void PrintUserInfo(User user) {
     if(user.info.hot!=NULL){
         printf("Hot: %s\n",user.info.hot);
     }
+    printf("Insira qualquer valor para avançar");
     getchar();
 }
 
@@ -377,7 +405,6 @@ User AddCity(User user,int num[],char** user_cities) {
             return user;
         }
         len=Len(cities,num_cities);
-        printf("%d",len);
         printf("\nEscolha uma opção:\n0-Voltar\n");
         for (i=1;i<len+1;i++){
             printf("%d-%s\n",i,cities[i-1]);
@@ -386,7 +413,7 @@ User AddCity(User user,int num[],char** user_cities) {
 
         fgets(choice,MaxChoice,stdin);
         system("clear");
-        if (strlen(choice)!=MaxChoice){
+        if (strlen(choice)==MaxChoice){
             CleanInput();
         }
         FixInput(choice);
@@ -428,6 +455,9 @@ User AddCity(User user,int num[],char** user_cities) {
                     cities[i] = cities[i + 1];
                 }
                 cities[len-1]="";
+            }
+            else{
+                printf("Opçao Invalida\n");
             }
         }
 
@@ -481,7 +511,7 @@ User RemoveCity(User user,int num[],char **user_cities) {
         printf("Opção: ");
         fgets(choice,MaxChoice,stdin);
         system("clear");
-        if (strlen(choice)!=MaxChoice){
+        if (strlen(choice)==MaxChoice){
             CleanInput();
         }
         FixInput(choice);
@@ -535,6 +565,9 @@ User RemoveCity(User user,int num[],char **user_cities) {
                 user_cities[num[0]-1]="";
                 num[0] -= 1;
             }
+            else{
+                printf("Opçao Invalida\n");
+            }
         }
 
     }while (!exit);
@@ -577,7 +610,7 @@ User AddPdi(User user,int num[],char** user_pdi) {
 
         fgets(choice,MaxChoice,stdin);
         system("clear");
-        if (strlen(choice)!=MaxChoice){
+        if (strlen(choice)==MaxChoice){
             CleanInput();
         }
         FixInput(choice);
@@ -600,13 +633,14 @@ User AddPdi(User user,int num[],char** user_pdi) {
 
                 //PDI
                 do {
+                    printf("0-Voltar\n");
                     GetPdi(pdi, cidade,user_pdi);
                     len=Len(pdi,num_max_pdi);
                     printf("Opção: ");
 
                     fgets(choice,MaxChoice,stdin);
                     system("clear");
-                    if (strlen(choice)!=MaxChoice){
+                    if (strlen(choice)==MaxChoice){
                         CleanInput();
                     }
                     FixInput(choice);
@@ -652,8 +686,14 @@ User AddPdi(User user,int num[],char** user_pdi) {
                             }
                             pdi[len - 1] = "";
                         }
+                        else{
+                            printf("Opçao Invalida\n");
+                        }
                     }
                 }while (!exit_pdi);
+            }
+            else{
+                printf("Opçao Invalida\n");
             }
         }
     }while (!exit);
@@ -764,7 +804,7 @@ User RemovePdi(User user,int num[],char **user_pdi) {
 
         fgets(choice,MaxChoice,stdin);
         system("clear");
-        if (strlen(choice)!=MaxChoice){
+        if (strlen(choice)==MaxChoice){
             CleanInput();
         }
         FixInput(choice);
@@ -819,6 +859,9 @@ User RemovePdi(User user,int num[],char **user_pdi) {
                 user_pdi[num[1]-1]="";
                 num[1] -= 1;
             }
+            else{
+                printf("Opçao Invalida\n");
+            }
         }
 
     }while (!exit);
@@ -861,7 +904,7 @@ User AddHot(User user, int num[]){
 
         fgets(choice,MaxChoice,stdin);
         system("clear");
-        if (strlen(choice)!=MaxChoice){
+        if (strlen(choice)==MaxChoice){
             CleanInput();
         }
         FixInput(choice);
@@ -882,14 +925,14 @@ User AddHot(User user, int num[]){
                 cidade=cities[x];
                 exit_pdi = 0;
                 do {
+                    printf("0-Voltar\n");
                     GetPdi(pdi, cidade,empty);
                     len=Len(pdi,num_max_pdi);
                     printf("Opção: ");
 
                     fgets(choice,MaxChoice,stdin);
                     system("clear");
-                    getchar();
-                    if (strlen(choice)!=MaxChoice){
+                    if (strlen(choice)==MaxChoice){
                         CleanInput();
                     }
                     FixInput(choice);
@@ -919,8 +962,15 @@ User AddHot(User user, int num[]){
                             exit_pdi=1;
                             exit=1;
                         }
+
+                        else{
+                            printf("Opçao Invalida\n");
+                        }
                     }
                 }while (!exit_pdi);
+            }
+            else{
+                printf("Opçao Invalida\n");
             }
         }
     }while (!exit);
@@ -951,18 +1001,27 @@ User Register() {
     do{
         printf("Nome: ");
         fgets(user.name,Max,stdin);
+        if (strlen(user.name)==Max){
+            CleanInput();
+        }
         FixInput(user.name);
     }while (format_user(user.name,1));
 
     //Morada
     printf("Morada: ");
     fgets(user.address,Max,stdin);
+    if (strlen(user.address)==Max){
+        CleanInput();
+    }
     FixInput(user.address);
 
     //Data de nascimento
     do{
         printf("Data de Nascimento (DD-MM-AAAA): ");
         fgets(user.date_of_birth,Max,stdin);
+        if (strlen(user.date_of_birth)==Max){
+            CleanInput();
+        }
         FixInput(user.date_of_birth);
     }while (format_user(user.date_of_birth,2));
 
@@ -970,6 +1029,9 @@ User Register() {
     do{
         printf("Telefone: ");
         fgets(user.phone_number,Max,stdin);
+        if (strlen(user.phone_number)==Max){
+            CleanInput();
+        }
         FixInput(user.phone_number);
     }while (format_user(user.phone_number,MaxCity));
 
@@ -1246,7 +1308,9 @@ void MakeTrip(User user){
 
     //Avalia trip
     RateTrip(trip);
+    printf("Insira qualquer valor para avançar");
     getchar();
+
 }
 
 void RateTrip(CITIES *trip){

@@ -104,7 +104,8 @@ void read_users() {
     user = (User *) malloc(sizeof(User));
     head_User = user; // pointer para o primeiro
 
-num_users=0;
+    num_users=0;
+    fgets(l, Max, f);
     while (fgets(l, Max, f) != NULL) {
         if(!primeiro){
             user->next = (User *) malloc(sizeof(User));

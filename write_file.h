@@ -14,8 +14,8 @@ void WriteUserFile(){
 	User *users;
 	users=head_User;
 	USERCity *cidades;
-	
 	USERPdi *pdi;
+    fprintf(f,"\n");
 	while(users!=NULL){
 		//Dados User
 		fprintf(f,"%s\n%s\n%s\n%s\n",users->name,users->address,users->date_of_birth,users->phone_number);

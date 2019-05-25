@@ -1,64 +1,31 @@
-a
-a
-12-12-2000
-000000000
-[
-]
-b
-b
-12-12-2000
-111111111
-[
-]
-Goncalo
-Figueira da Foz
-22-11-2000
-926539407
-Guimaraes
-Figueira da Foz
-Porto
-[
-]
-nuno
-18
-11-11-2011
-961079239
-Vila Real
+
+Bruno
+Faria
+08-02-2000
+925215579
 Angra do Heroismo
 Aveiro
-[
-Zoo Santo Inacio
-Vila Nova de Gaia
-Ponte Luis I
-Vila Nova de Gaia
-Real Companhia Velha
-Vila Nova de Gaia
-]
-     
-
-12-12-1900
-123456789
-Lisboa
-Funchal
-Braga
-[
-]
-c
-c
-12-12-2000
-222222222
-Lisboa
-Vila Nova de Gaia
-Porto
-[
-Ponte Luis I
-Vila Nova de Gaia
+Beja
+[Jardim Duque da Terceira
+Angra do Heroismo
 Jardim Duque da Terceira
 Angra do Heroismo
-Se Catedral de Viseu
-Viseu
-Real Companhia Velha
-Vila Nova de Gaia
-Zoo Santo Inacio
-Vila Nova de Gaia
+Monte Brasil Vulcao
+Angra do Heroismo
+Museu de Angra do Heroismo
+Angra do Heroismo
+Canal Central de Aveiro
+Aveiro
+Costa Nova do Prado
+Aveiro
+Mosteiro de Jesus
+Aveiro
+Museu Maritimo de Ilhavo e Aquario dos Bacalhaus
+Aveiro
+Castelo de Beja
+Beja
+Museu Jorge Vieira
+Beja
+Museu Rainha Dona Leonor
+Beja
 ]

@@ -63,6 +63,7 @@ void CleanInput();
 
 void read_file();
 void read_users();
+void GetNumUsers();
 void WriteUserFile();
 
 //User func

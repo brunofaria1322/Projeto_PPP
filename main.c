@@ -64,8 +64,13 @@ int main() {
                 if (user.name==NULL){
                     printf("Não foi encontrado nenhum user associado a esse Número\n");
                     printf("Deseja Registar-se?\n1-Sim\n2-Não\nOpção: ");
-                    scanf("%c",&choice);
-                    getchar();
+                    fgets(input,Max,stdin);
+                    system("clear");
+                    if (strlen(input)==Max){
+                        CleanInput();
+                    }
+                    choice=input[0];
+
                     if (choice!='1'){
                         break;
                     }
@@ -92,16 +97,17 @@ int main() {
                 exit=1;
                 break;
 
-             default: printf("Opção inválida. Por favor introduza um valor entre 0 e 2.\n");
-                 break;
-         }
-
-        free(user_cities);
+            default: printf("Opção inválida. Por favor introduza um valor entre 0 e 2.\n");
+                break;
+        }
     }while (!exit);
 
     WriteUserFile();
-    free(head_User);
-    free(head_Cities);
+    //free(head_User);
+    //free(head_Cities);
+    //free(user_cities);
+    //free(user_pdi);
+    free(input);
     return 0;
 }
 
@@ -228,6 +234,7 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
                 else{
                     trip=1;
                     SaveUser(user);
+                    GetNumUsers();
                     GetPopularity();
                     PopBubbleSort();
                     MakeTrip(user);
@@ -243,6 +250,8 @@ void UserInterface(User user, int num[],char **user_cities,char **user_pdi){
 
         }
     }while (!exit_user);
+
+    free(input);
 
     if (!trip){
         SaveUser(user);
@@ -358,6 +367,7 @@ User EditUser(User user){
 
         }
     }while (!exit_edituser);
+    free(input);
     return user;
 }
 
@@ -386,7 +396,13 @@ void PrintUserInfo(User user) {
         printf("Hot: %s\n",user.info.hot);
     }
     printf("Insira qualquer valor para avançar");
-    getchar();
+    char *input=malloc(Max);
+    fgets(input,Max,stdin);
+    system("clear");
+    if (strlen(input)==Max){
+        CleanInput();
+    }
+    free(input);
 }
 
 
@@ -462,6 +478,8 @@ User AddCity(User user,int num[],char** user_cities) {
         }
 
     }while (!exit);
+
+    free(cities);
     return user;
 }
 
@@ -604,7 +622,7 @@ User AddPdi(User user,int num[],char** user_pdi) {
     //Cidade
     do{
         GetPdiByCity(user_pdi,cities);
-        printf("\n0-Voltar\nEscolha a cidade à qual pertence o pdi desejado:\n");
+        printf("\n0 - Voltar\nEscolha a cidade à qual pertence o pdi desejado:\n");
         len=Len(cities,num_cities);
         printf("Opção: ");
 
@@ -617,10 +635,8 @@ User AddPdi(User user,int num[],char** user_pdi) {
         x= format(choice);
         if (x) {
             printf("Insira apenas numeros\n");
-            continue;
         }
-
-        if (choice[0]=='0') {
+        else if (choice[0]=='0') {
             exit = 1;
         }
         else{
@@ -634,8 +650,8 @@ User AddPdi(User user,int num[],char** user_pdi) {
                 //PDI
                 do {
                     printf("0-Voltar\n");
-                    GetPdi(pdi, cidade,user_pdi);
-                    len=Len(pdi,num_max_pdi);
+                    GetPdi(pdi,cidade,user_pdi);
+                    len=Len(pdi,num_pdi);
                     printf("Opção: ");
 
                     fgets(choice,MaxChoice,stdin);
@@ -647,10 +663,9 @@ User AddPdi(User user,int num[],char** user_pdi) {
                     x= format(choice);
                     if (x) {
                         printf("Insira apenas numeros\n");
-                        continue;
                     }
 
-                    if (choice[0] == '0') {
+                    else if (choice[0] == '0') {
                         exit_pdi = 1;
                     }
                     else {
@@ -719,7 +734,7 @@ void GetPdiByCity(char **user_pdi,char **cities){
         }
         while (ponto != NULL) {
             passa = 1;
-            for (i = 0; i < num_max_pdi; i++) {
+            for (i = 0; i < num_pdi; i++) {
                 if (strlen(user_pdi[i]) == 0) {
                     break;
                 }
@@ -765,7 +780,7 @@ void GetPdi(char **pdi,char *city, char **user_pdi){
     ponto=cid->pdi;
     while (ponto != NULL) {
         passa = 1;
-        for (i = 0; i < num_max_pdi; i++) {
+        for (i = 0; i < num_pdi; i++) {
             if (strlen(user_pdi[i]) == 0) {
                 break;
             }
@@ -811,10 +826,9 @@ User RemovePdi(User user,int num[],char **user_pdi) {
         x= format(choice);
         if (x) {
             printf("Insira apenas numeros\n");
-            continue;
         }
 
-        if (choice[0]=='0') {
+        else if (choice[0]=='0') {
             exit = 1;
         }
         else{
@@ -911,10 +925,8 @@ User AddHot(User user, int num[]){
         x= format(choice);
         if (x) {
             printf("Insira apenas numeros\n");
-            continue;
         }
-
-        if (choice[0]=='0') {
+        else if (choice[0]=='0') {
             exit = 1;
         }
         else{
@@ -927,7 +939,7 @@ User AddHot(User user, int num[]){
                 do {
                     printf("0-Voltar\n");
                     GetPdi(pdi, cidade,empty);
-                    len=Len(pdi,num_max_pdi);
+                    len=Len(pdi,num_pdi);
                     printf("Opção: ");
 
                     fgets(choice,MaxChoice,stdin);
@@ -939,10 +951,9 @@ User AddHot(User user, int num[]){
                     x= format(choice);
                     if (x) {
                         printf("Insira apenas numeros\n");
-                        continue;
                     }
 
-                    if (choice[0] == '0') {
+                    else if (choice[0] == '0') {
                         exit_pdi = 1;
                     }
                     else {
@@ -1199,7 +1210,7 @@ void MakeTrip(User user){
                 if(user.info.hot!=NULL){
                     if (strcmp(user.info.hot_city,cidades->name)==0){
                         temp_pdi=cidades->pdi;
-                        while (strcmp(user.info.hot,temp_pdi->name)==0){
+                        while (strcmp(user.info.hot,temp_pdi->name)!=0){
                             temp_pdi=temp_pdi->next;
                         }
                         pontos->name=temp_pdi->name;
@@ -1219,6 +1230,7 @@ void MakeTrip(User user){
                         if (strcmp(user_pdi->name,temp_pdi->name)==0){
                             if (hot){
                                 if (strcmp(temp_pdi->name,user.info.hot)==0){
+                                    user_pdi=user_pdi->next;
                                     continue;
                                 }
                             }
@@ -1250,6 +1262,7 @@ void MakeTrip(User user){
                     while (temp_pdi!=NULL){
                         if (hot){
                             if (strcmp(temp_pdi->name,user.info.hot)==0){
+                                temp_pdi=temp_pdi->next;
                                 continue;
                             }
                         }
@@ -1309,7 +1322,13 @@ void MakeTrip(User user){
     //Avalia trip
     RateTrip(trip);
     printf("Insira qualquer valor para avançar");
-    getchar();
+    char *input=malloc(Max);
+    fgets(input,Max,stdin);
+    system("clear");
+    if (strlen(input)==Max){
+        CleanInput();
+    }
+    free(input);
 
 }
 
@@ -1391,5 +1410,16 @@ void RateTrip(CITIES *trip){
 
     //Final
     popularity/=MaxCity;
-    printf("A sua viagem tem uma popularidade de %.2f\n",popularity);
+    popularity*=100;
+    printf("A sua viagem tem uma popularidade de %.2f%%\n",popularity);
+}
+
+void GetNumUsers(){
+    User *user;
+    user=head_User;
+    num_users=0;
+    while(user!=NULL){
+        num_users++;
+        user=user->next;
+    }
 }
